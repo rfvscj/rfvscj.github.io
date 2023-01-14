@@ -1,2 +1,5 @@
 #!/usr/bin/env sh
-npx hexo generate && git add .
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx hexo generate
+git add .
