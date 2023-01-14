@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/论文笔记/newtest.md",
+                "file": "source/_posts/解决方案/Hexo+Obsidian+git.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/论文笔记/newtest.md",
+                "file": "source/_posts/解决方案/Hexo+Obsidian+git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/论文笔记/newtest.md",
+                "file": "source/_posts/解决方案/Hexo+Obsidian+git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,12 +134,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/论文笔记/newtest.md"
+                "file": "source/_posts/解决方案/Hexo+Obsidian+git.md"
               }
+            }
+          },
+          {
+            "id": "f9a00f516686cae3",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -156,8 +164,9 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "437b2237c49a4604",
+  "active": "f0327f82d31335f8",
   "lastOpenFiles": [
+    "source/_posts/论文笔记/newtest.md",
     "source/_posts/论文笔记/Transformer.md",
     "source/_posts/hello-world.md",
     "source/_obsidian/post_template.md",
