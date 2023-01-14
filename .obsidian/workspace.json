@@ -137,17 +137,9 @@
                 "file": "source/_posts/论文笔记/newtest.md"
               }
             }
-          },
-          {
-            "id": "6da2c4ddea3127a9",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -164,7 +156,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "f0327f82d31335f8",
+  "active": "437b2237c49a4604",
   "lastOpenFiles": [
     "source/_posts/论文笔记/Transformer.md",
     "source/_posts/hello-world.md",

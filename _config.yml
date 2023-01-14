@@ -106,9 +106,7 @@ theme: fluid  # next  # landscape
 deploy:
   type: git
   repo: https://github.com/rfvscj/rfvscj.github.io
-  branch: main
-  
-  
+  branch: gh-pages
 # Generate categories from directory-tree
 # Dependencies: https://github.com/xu-song/hexo-auto-category
 # depth: the depth of directory-tree you want to generate, should > 0
