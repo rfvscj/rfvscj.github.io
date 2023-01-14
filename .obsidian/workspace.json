@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/论文笔记/eee.md",
+                "file": "source/_posts/想法/李苗.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/论文笔记/eee.md",
+                "file": "source/_posts/想法/李苗.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/论文笔记/eee.md",
+                "file": "source/_posts/想法/李苗.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/论文笔记/eee.md"
+                "file": "source/_posts/想法/李苗.md"
               }
             }
           },
@@ -166,15 +166,15 @@
   },
   "active": "f0327f82d31335f8",
   "lastOpenFiles": [
-    "source/_posts/论文笔记/Transformer.md",
+    "source/_posts/想法/测试.md",
     "source/_posts/想法/李苗.md",
+    "source/_posts/论文笔记/eee.md",
+    "source/_posts/论文笔记/Transformer.md",
     "source/_posts/想法/assets/61BFC4F8D8F1718EF5102270A041396B.png",
     "assets/61BFC4F8D8F1718EF5102270A041396B 1.png.md",
     "source/_posts/想法/assets/61BFC4F8D8F1718EF5102270A041396B 1.png",
     "61BFC4F8D8F1718EF5102270A041396B.png",
     "source/_posts/hello-world.md",
-    "source/_posts/论文笔记/newtest.md",
-    "source/_posts/解决方案/Hexo+Obsidian+git.md",
-    "source/_obsidian/post_template.md"
+    "source/_posts/论文笔记/newtest.md"
   ]
 }
