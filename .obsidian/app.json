@@ -3,5 +3,7 @@
     "node_modules/",
     "themes/",
     "scaffolds/"
-  ]
+  ],
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": "./assets"
 }
