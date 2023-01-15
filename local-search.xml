@@ -23,11 +23,11 @@
   
   
   <entry>
-    <title>page</title>
-    <link href="/2023/01/878ac97d09f0.html"/>
-    <url>/2023/01/878ac97d09f0.html</url>
+    <title>网络小常识</title>
+    <link href="/2023/01/2d62fc9c40e1.html"/>
+    <url>/2023/01/2d62fc9c40e1.html</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><p>即internationalization，i+18个字符+n，自动多国语言。</p><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>顾名思义，git忽略其中指定文件&#x2F;文件夹的改动</p><h3 id="gitkeep"><a href="#gitkeep" class="headerlink" title=".gitkeep"></a>.gitkeep</h3><p>只是为了使文件夹不再为空，从而不会被忽视，命名为约定俗成</p><h3 id="gitattribute"><a href="#gitattribute" class="headerlink" title=".gitattribute"></a>.gitattribute</h3><p>定义一些属性</p>]]></content>
     
     
     <categories>
