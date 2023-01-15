@@ -8,8 +8,7 @@ tags:
 ### git 换行符问题
 Git: ‘LF will be replaced by CRLF the next time Git touches it
 原因：Windows使用CRLF，Linux和git使用LF
-解决方案：
-1. 对于Windows系统
+1. 对于Windows系统（默认，推荐）
 ```
 # 提交时转换为LF，检出时转换为CRLF
 git config --global core.autocrlf true
@@ -24,7 +23,8 @@ git config --global core.autocrlf false
 # 提交时转换为LF，检出时不转换
 git config --global core.autocrlf input
 ```
-
+解决方案：
+不管，或修改.gitattributes
 
 ### i18n
 即internationalization，i+18个字符+n，自动多国语言。
