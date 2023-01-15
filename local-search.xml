@@ -23,11 +23,11 @@
   
   
   <entry>
-    <title>网络小常识</title>
+    <title>git小常识</title>
     <link href="/2023/01/2d62fc9c40e1.html"/>
     <url>/2023/01/2d62fc9c40e1.html</url>
     
-    <content type="html"><![CDATA[<h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><p>即internationalization，i+18个字符+n，自动多国语言。</p><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>顾名思义，git忽略其中指定文件&#x2F;文件夹的改动</p><h3 id="gitkeep"><a href="#gitkeep" class="headerlink" title=".gitkeep"></a>.gitkeep</h3><p>只是为了使文件夹不再为空，从而不会被忽视，命名为约定俗成</p><h3 id="gitattribute"><a href="#gitattribute" class="headerlink" title=".gitattribute"></a>.gitattribute</h3><p>定义一些属性</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="git-换行符问题"><a href="#git-换行符问题" class="headerlink" title="git 换行符问题"></a>git 换行符问题</h3><p>Git: ‘LF will be replaced by CRLF the next time Git touches it<br>原因：Windows使用CRLF，Linux和git使用LF<br>解决方案：</p><ol><li>对于Windows系统<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 提交时转换为LF，检出时转换为CRLF</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>或仅在Windows上开发操作时<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 提交检出均不转换</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure></li><li>对于Linux系统<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 提交时转换为LF，检出时不转换</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-built_in">input</span><br></code></pre></td></tr></table></figure></li></ol><h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><p>即internationalization，i+18个字符+n，自动多国语言。</p><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>顾名思义，git忽略其中指定文件&#x2F;文件夹的改动</p><h3 id="gitkeep"><a href="#gitkeep" class="headerlink" title=".gitkeep"></a>.gitkeep</h3><p>只是为了使文件夹不再为空，从而不会被忽视，命名为约定俗成</p><h3 id="gitattribute"><a href="#gitattribute" class="headerlink" title=".gitattribute"></a>.gitattribute</h3><p>定义一些属性</p>]]></content>
     
     
     <categories>
