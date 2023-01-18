@@ -6,5 +6,6 @@
   ],
   "newLinkFormat": "relative",
   "attachmentFolderPath": "source/images",
-  "useMarkdownLinks": true
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true
 }
