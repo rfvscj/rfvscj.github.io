@@ -4,6 +4,63 @@
   
   
   <entry>
+    <title>战争与和平</title>
+    <link href="/2023/01/52cbe2190d15.html"/>
+    <url>/2023/01/52cbe2190d15.html</url>
+    
+    <content type="html"><![CDATA[<h3 id="热爱和平和主战并不矛盾"><a href="#热爱和平和主战并不矛盾" class="headerlink" title="热爱和平和主战并不矛盾"></a>热爱和平和主战并不矛盾</h3><p>压迫下的和平不是和平，战争才能带来真正的和平。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>想法</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>健康</title>
+    <link href="/2023/01/91e92fd98a75.html"/>
+    <url>/2023/01/91e92fd98a75.html</url>
+    
+    <content type="html"><![CDATA[<h3 id="眼睛"><a href="#眼睛" class="headerlink" title="眼睛"></a>眼睛</h3><ul><li>有钱后买角膜接触镜</li><li>避免习惯性眯眼</li><li>浅色背景深色文字，适合一般人尤其是散光人群；弱视，强光敏感适合黑色背景；暗色不能用纯黑</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>undefined</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Markdown规范</title>
+    <link href="/2023/01/0f06b066a991.html"/>
+    <url>/2023/01/0f06b066a991.html</url>
+    
+    <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul><li>一级标题，一般不用</li><li>二级标题，一般用在文档开头</li><li>三级标题，一般每个小节使用</li><li>四级标题，一般每个小节下的段落使用</li><li>五级标题，一般不用</li><li>六级标题，一般不用</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>undefined</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Markdown语法备忘</title>
     <link href="/2023/01/a348bc98db69.html"/>
     <url>/2023/01/a348bc98db69.html</url>
@@ -46,7 +103,7 @@
     <link href="/2023/01/2d62fc9c40e1.html"/>
     <url>/2023/01/2d62fc9c40e1.html</url>
     
-    <content type="html"><![CDATA[<h3 id="git-换行符问题"><a href="#git-换行符问题" class="headerlink" title="git 换行符问题"></a>git 换行符问题</h3><p>Git: ‘LF will be replaced by CRLF the next time Git touches it<br>原因：Windows使用CRLF，Linux和git使用LF</p><ol><li>对于Windows系统（默认，推荐）<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 提交时转换为LF，检出时转换为CRLF</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>或仅在Windows上开发操作时<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 提交检出均不转换</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure></li><li>对于Linux系统<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 提交时转换为LF，检出时不转换</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-built_in">input</span><br></code></pre></td></tr></table></figure>解决方案：<br>不管，或修改.gitattributes</li></ol><h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><p>即internationalization，i+18个字符+n，自动多国语言。</p><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>顾名思义，git忽略其中指定文件&#x2F;文件夹的改动</p><h3 id="gitkeep"><a href="#gitkeep" class="headerlink" title=".gitkeep"></a>.gitkeep</h3><p>只是为了使文件夹不再为空，从而不会被忽视，命名为约定俗成</p><h3 id="gitattribute"><a href="#gitattribute" class="headerlink" title=".gitattribute"></a>.gitattribute</h3><p>定义一些属性</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="git-换行符问题"><a href="#git-换行符问题" class="headerlink" title="git 换行符问题"></a>git 换行符问题</h3><p>Git: ‘LF will be replaced by CRLF the next time Git touches it<br>原因：Windows 使用 CRLF，Linux 和 git 使用 LF</p><ol><li>对于 Windows 系统（默认，推荐）<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 提交时转换为LF，检出时转换为CRLF</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>或仅在 Windows 上开发操作时<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 提交检出均不转换</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure></li><li>对于 Linux 系统<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 提交时转换为LF，检出时不转换</span><br>git config --<span class="hljs-keyword">global</span> core.autocrlf <span class="hljs-built_in">input</span><br></code></pre></td></tr></table></figure>解决方案：<br>不管，或修改 .gitattributes</li></ol><h3 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h3><p>即 internationalization，i+18 个字符+n，自动多国语言。</p><h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>顾名思义，git 忽略其中指定文件&#x2F;文件夹的改动</p><h3 id="gitkeep"><a href="#gitkeep" class="headerlink" title=".gitkeep"></a>.gitkeep</h3><p>只是为了使文件夹不再为空，从而不会被忽视，命名为约定俗成</p><h3 id="gitattribute"><a href="#gitattribute" class="headerlink" title=".gitattribute"></a>.gitattribute</h3><p>定义一些属性</p>]]></content>
     
     
     <categories>
