@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: '任家的网页'
+title: '叔莫少州令'
 subtitle: ''
 description: '试试'
 keywords:
@@ -29,7 +29,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: [live2d-widget/*, live2d_api/*] # 忽略live2d文件夹 
 
 # Writing
 # new_post_name: :title.md # File name of new posts
