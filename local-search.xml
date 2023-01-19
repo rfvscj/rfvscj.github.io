@@ -8,7 +8,7 @@
     <link href="/2023/01/25cf6d6bb3be.html"/>
     <url>/2023/01/25cf6d6bb3be.html</url>
     
-    <content type="html"><![CDATA[<h2 id="提醒下这个博客我都做了什么"><a href="#提醒下这个博客我都做了什么" class="headerlink" title="提醒下这个博客我都做了什么"></a>提醒下这个博客我都做了什么</h2><p>主题fluid<br>看板娘用了live2d-widget和live2d_api，看板娘资源在后者里面，要记得更新</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="提醒下这个博客我都做了什么"><a href="#提醒下这个博客我都做了什么" class="headerlink" title="提醒下这个博客我都做了什么"></a>提醒下这个博客我都做了什么</h2><p>都是主题fluid下配置的<br>看板娘用了live2d-widget和live2d_api，看板娘资源在后者里面，要记得更新<br>live2d_api得额外搭建，这里没起到作用。。。<br>skip_render忽略下live2d，以免耗费资源</p>]]></content>
     
     
     <categories>
