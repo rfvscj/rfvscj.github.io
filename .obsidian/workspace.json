@@ -11,8 +11,12 @@
             "id": "f0327f82d31335f8",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/想法/博客完善计划.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/想法/博客完善计划.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "source/_posts/想法/博客完善计划.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "source/_posts/想法/博客完善计划.md"
+              }
             }
           },
           {
@@ -156,16 +164,16 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "f9a00f516686cae3",
+  "active": "f0327f82d31335f8",
   "lastOpenFiles": [
+    "source/_posts/想法/老子.md",
+    "source/_posts/想法/战争与和平.md",
     "source/_posts/想法/李苗.md",
     "source/_posts/undefined/关于博客.md",
-    "source/_posts/想法/战争与和平.md",
     "source/_posts/undefined/健康.md",
     "source/_posts/undefined/Markdown规范.md",
     "source/_posts/undefined/Markdown语法备忘.md",
     "source/_posts/undefined/git常识.md",
-    "source/_posts/想法/老子.md",
     "source/_posts/想法/assets/61BFC4F8D8F1718EF5102270A041396B.png",
     "source/_posts/想法/assets/BE4F2243EB215F0771AD4E34AE0E89D2.jpg"
   ]
