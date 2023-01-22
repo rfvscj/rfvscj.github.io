@@ -4,11 +4,30 @@
   
   
   <entry>
+    <title>博客完善计划</title>
+    <link href="/2023/01/968e461ab5d1.html"/>
+    <url>/2023/01/968e461ab5d1.html</url>
+    
+    <content type="html"><![CDATA[<h2 id="这篇博客应该有什么东西"><a href="#这篇博客应该有什么东西" class="headerlink" title="这篇博客应该有什么东西"></a>这篇博客应该有什么东西</h2><h3 id="学习相关"><a href="#学习相关" class="headerlink" title="学习相关"></a>学习相关</h3><ol><li>论文笔记</li><li>对问题和bug的解决方案以及记录</li><li>leetcode代码题解</li></ol><h3 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h3><ol><li>想法、灵感记录</li><li>对一些事情的评判</li><li>随笔</li></ol><h3 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h3><ol><li>关于我的一些记录</li><li>搞对象的需求</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>想法</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>关于博客</title>
     <link href="/2023/01/25cf6d6bb3be.html"/>
     <url>/2023/01/25cf6d6bb3be.html</url>
     
-    <content type="html"><![CDATA[<h2 id="提醒下这个博客我都做了什么"><a href="#提醒下这个博客我都做了什么" class="headerlink" title="提醒下这个博客我都做了什么"></a>提醒下这个博客我都做了什么</h2><p>都是主题fluid下配置的<br>看板娘用了live2d-widget和live2d_api，看板娘资源在后者里面，要记得更新<br>live2d_api得额外搭建，这里没起到作用。。。<br>skip_render忽略下live2d，以免耗费资源</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="提醒下这个博客我都做了什么"><a href="#提醒下这个博客我都做了什么" class="headerlink" title="提醒下这个博客我都做了什么"></a>提醒下这个博客我都做了什么</h2><p>都是主题fluid下配置的<br>看板娘用了live2d-widget和live2d_api，看板娘资源在后者里面，要记得更新<br>live2d_api得额外搭建，这里没起到作用。。。<br>skip_render忽略下live2d，以免耗费资源<br>fluid主题优先用博客目录下的_confg.fluid.yml<br>hexo的根目录是source</p>]]></content>
     
     
     <categories>
@@ -99,25 +118,6 @@
   
   
   <entry>
-    <title>老子</title>
-    <link href="/2023/01/66e3050c1617.html"/>
-    <url>/2023/01/66e3050c1617.html</url>
-    
-    <content type="html"><![CDATA[<p><img src="/../../images/C3ACD794B02955AC657BC6615EAAFF62.jpg"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>想法</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>git小常识</title>
     <link href="/2023/01/2d62fc9c40e1.html"/>
     <url>/2023/01/2d62fc9c40e1.html</url>
@@ -166,25 +166,6 @@
     <categories>
       
       <category>论文笔记</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>李苗</title>
-    <link href="/2023/01/9cca0584108d.html"/>
-    <url>/2023/01/9cca0584108d.html</url>
-    
-    <content type="html"><![CDATA[<p><img src="/images/61BFC4F8D8F1718EF5102270A041396B.png" alt="李苗"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>想法</category>
       
     </categories>
     
