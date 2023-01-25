@@ -64,8 +64,17 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "bb4004bf3474b4e9",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -155,7 +164,7 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "f0327f82d31335f8",
+  "active": "c6c20c342a08b007",
   "lastOpenFiles": [
     "source/_posts/undefined/我的使用说明书.md",
     "source/_posts/评/贩卖死亡.md",
