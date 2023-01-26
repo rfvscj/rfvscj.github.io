@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/私密/我的过去.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/私密/我的过去.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/私密/我的过去.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/about/index.md"
+                "file": "source/_posts/私密/我的过去.md"
               }
             }
           },
@@ -164,17 +164,17 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "c6c20c342a08b007",
+  "active": "f0327f82d31335f8",
   "lastOpenFiles": [
     "source/_posts/undefined/我的使用说明书.md",
-    "source/_posts/评/贩卖死亡.md",
-    "source/_posts/想法/博客完善计划.md",
-    "source/_posts/想法/老子.md",
-    "source/_posts/想法/战争与和平.md",
-    "source/_posts/想法/李苗.md",
-    "source/_posts/undefined/关于博客.md",
-    "source/_posts/undefined/健康.md",
-    "source/_posts/undefined/Markdown规范.md",
+    "source/_posts/想法与计划/续写2020计划.md",
+    "source/_posts/解决方案/Hexo+Obsidian+git.md",
+    "source/_posts/解决方案/hexo实现文档加密.md",
+    "source/_posts/想法与计划/博客完善计划.md",
+    "source/_posts/想法与计划/战争与和平.md",
+    "source/_posts/想法与计划/测试.md",
+    "source/_posts/论文笔记/Transformer.md",
+    "source/_posts/论文笔记/eee.md",
     "source/_posts/undefined/Markdown语法备忘.md"
   ]
 }
