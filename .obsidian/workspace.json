@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/解决方案/Hexo相关.md",
+                "file": "source/_posts/LeetCode101/DP.md",
                 "mode": "source",
                 "source": false
               }
@@ -25,26 +25,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/LeetCode101/DP.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2eb7c87f1c226e89",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_posts/LeetCode101/搜索-回溯法.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -119,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_posts/LeetCode101/DP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_posts/LeetCode101/DP.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -159,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "source/_posts/LeetCode101/DP.md"
               }
             }
           },
@@ -189,17 +176,17 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "2eb7c87f1c226e89",
+  "active": "f0327f82d31335f8",
   "lastOpenFiles": [
-    "source/_posts/LeetCode101/DP.md",
-    "conflict-files-obsidian-git.md",
-    "source/_posts/LeetCode101/搜索-DFS.md",
-    "source/_posts/LeetCode101/搜索-回溯法.md",
-    "source/_posts/零碎笔记/强化学习篇.md",
-    "source/_posts/零碎笔记/集束搜索和贪心搜索.md",
-    "source/_posts/零碎笔记/pipeline.md",
-    "source/_posts/解决方案/Hexo+Obsidian+git.md",
     "source/_posts/解决方案/Hexo相关.md",
-    "source/_posts/书心/失去的三年.md"
+    "source/_posts/LeetCode101/搜索-回溯法.md",
+    "source/_posts/LeetCode101/搜索-DFS.md",
+    "source/_posts/LeetCode101/DP.md",
+    "source/_posts/零碎笔记/集束搜索和贪心搜索.md",
+    "conflict-files-obsidian-git.md",
+    "source/_posts/零碎笔记/自定义loss.md",
+    "source/_posts/零碎笔记/强化学习篇.md",
+    "source/_posts/零碎笔记/pipeline.md",
+    "source/_posts/解决方案/Hexo+Obsidian+git.md"
   ]
 }
