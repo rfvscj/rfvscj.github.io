@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/书心/逝去的三年.md",
+                "file": "source/_posts/解决方案/Hexo相关.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/书心/逝去的三年.md",
+                "file": "source/_posts/解决方案/Hexo相关.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/书心/逝去的三年.md",
+                "file": "source/_posts/解决方案/Hexo相关.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/书心/逝去的三年.md"
+                "file": "source/_posts/解决方案/Hexo相关.md"
               }
             }
           },
@@ -166,6 +166,7 @@
   },
   "active": "f0327f82d31335f8",
   "lastOpenFiles": [
+    "source/_posts/书心/失去的三年.md",
     "source/_posts/LeetCode101/搜索-DFS.md",
     "source/_posts/关于我/我的使用说明书.md",
     "source/_posts/关于我/一般流程.md",
@@ -174,7 +175,6 @@
     "source/_posts/undefined/Markdown规范.md",
     "source/_posts/undefined/Markdown语法备忘.md",
     "source/_posts/LeetCode101/243.md",
-    "source/_posts/评/贩卖死亡.md",
-    "source/_posts/undefined/关于博客.md"
+    "source/_posts/评/贩卖死亡.md"
   ]
 }
