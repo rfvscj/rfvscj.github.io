@@ -35,7 +35,7 @@
     "hexo-theme-next": "^8.14.1",
     "live2d-widget-model-haruto": "^1.0.5",
     "live2d-widget-model-shizuku": "^1.0.5",
-    "marked": "^4.2.12",
+    "marked": "^4.3.0",
     "mermaid": "^9.3.0"
   },
   "devDependencies": {
