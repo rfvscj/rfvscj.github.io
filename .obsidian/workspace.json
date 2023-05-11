@@ -42,9 +42,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "7e84859ee3d5934e",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.1.16"
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -119,7 +129,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/LeetCode101/DP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +145,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/LeetCode101/DP.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -158,9 +166,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "source/_posts/LeetCode101/DP.md"
-              }
+              "state": {}
             }
           },
           {
@@ -189,8 +195,11 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "8ea440465ec77701",
+  "active": "7e84859ee3d5934e",
   "lastOpenFiles": [
+    "conflict-files-obsidian-git.md",
+    "source/_posts/LeetCode101/DP.md",
+    "source/images/Pasted image 20230304153708.png",
     "source/_posts/零碎笔记/自定义loss.md",
     "source/_posts/零碎笔记/自动混合精度.md",
     "source/_posts/零碎笔记/强化学习篇.md",
@@ -201,7 +210,6 @@
     "public/2023/02/08590a235cd2.html",
     "source/_posts/想法与计划/减假暂演示系统计划书.md",
     "source/_posts/undefined/招新考察点.md",
-    "source/_posts/LeetCode101/DP.md",
     "source/_posts/LeetCode101/搜索-回溯法.md",
     "source/_posts/LeetCode101/搜索-DFS.md",
     "source/_posts/想法与计划/新学期研学计划.md",
