@@ -8,53 +8,41 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f0327f82d31335f8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/想法与计划/减假暂演示系统计划书.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ae672ee624f7fd42",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/undefined/招新考察点.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "8ea440465ec77701",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/LeetCode101/DP.md",
+                "file": "source/_posts/undefined/latex备忘.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "7e84859ee3d5934e",
+            "id": "7f7e362ff9d23998",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/undefined/交叉熵与对比损失.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "17b51bb572b2becc",
             "type": "leaf",
             "state": {
               "type": "release-notes",
               "state": {
-                "currentVersion": "1.1.16"
+                "currentVersion": "1.2.8"
               }
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -107,6 +95,14 @@
               "type": "file-tree-view",
               "state": {}
             }
+          },
+          {
+            "id": "e38d3ea9c5939c1a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ],
         "currentTab": 3
@@ -129,6 +125,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/undefined/交叉熵与对比损失.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -145,6 +142,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "source/_posts/undefined/交叉熵与对比损失.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -166,7 +164,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "source/_posts/undefined/交叉熵与对比损失.md"
+              }
             }
           },
           {
@@ -195,10 +195,18 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "7e84859ee3d5934e",
+  "active": "7f7e362ff9d23998",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
+    "source/_posts/undefined/latex备忘.md",
+    "source/_posts/undefined/交叉熵与对比损失.md",
+    "source/_posts/undefined/Markdown语法备忘.md",
+    "source/_posts/undefined/Markdown规范.md",
     "source/_posts/LeetCode101/DP.md",
+    "source/_posts/想法与计划/减假暂演示系统计划书.md",
+    "source/_posts/undefined/招新考察点.md",
+    "public/images/Pasted image 20230304153708.png",
+    "public/images",
+    "conflict-files-obsidian-git.md",
     "source/images/Pasted image 20230304153708.png",
     "source/_posts/零碎笔记/自定义loss.md",
     "source/_posts/零碎笔记/自动混合精度.md",
@@ -208,8 +216,6 @@
     "public/2023/02/f79810992b84.html",
     "public/2023/02/84a03cf4d2ad.html",
     "public/2023/02/08590a235cd2.html",
-    "source/_posts/想法与计划/减假暂演示系统计划书.md",
-    "source/_posts/undefined/招新考察点.md",
     "source/_posts/LeetCode101/搜索-回溯法.md",
     "source/_posts/LeetCode101/搜索-DFS.md",
     "source/_posts/想法与计划/新学期研学计划.md",
