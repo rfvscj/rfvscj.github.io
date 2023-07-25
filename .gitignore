@@ -7,3 +7,5 @@ public/
 .deploy*/
 _multiconfig.yml
 .obsidian/workspace
+source/_draft
+source/_post/ignore
