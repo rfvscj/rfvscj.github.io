@@ -193,6 +193,10 @@
   },
   "active": "f9a00f516686cae3",
   "lastOpenFiles": [
+    "source/img/bg5.png",
+    "source/img/bg0.png",
+    "public/img/bg0.jpg",
+    "public/img/bg5.jpg",
     "node_modules/css/lib/stringify/source-map-support.js",
     "node_modules/css/lib/stringify/identity.js",
     "node_modules/css/lib/stringify/compress.js",
@@ -204,7 +208,6 @@
     "node_modules/css/lib",
     "node_modules/css/package.json",
     "node_modules/file-uri-to-path/README.md",
-    "node_modules/file-uri-to-path/test",
     "node_modules/file-uri-to-path/History.md",
     "node_modules/nan/tools/README.md",
     "node_modules/bindings/README.md",
@@ -235,9 +238,6 @@
     "node_modules/layout-base/layout-schema.png",
     "source/img/bg5.jpg",
     "source/img/wallhaven-626880.jpg",
-    "source/img/bg0.jpg",
-    "source/img/森林 老鹰4K壁纸.jpg",
-    "public/images/Pasted image 20230304153708.png",
-    "source/images/Pasted image 20230304153708.png"
+    "source/img/bg0.jpg"
   ]
 }
