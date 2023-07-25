@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="R-IdNbP9VV6M5omk5_9W5-Kt2CwI5CPpGKpzJeQ87jU" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon_ren.png">
+  <link rel="icon" href="/img/icon_ren.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="rfvscj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="概述动态规划适用于重叠子问题的问题，动态规划只能应用于有最优子结构的问题。最优子结构的意思是局部最优解能决定全局最优解（对有些问题这个要求并不能完全满足，故有时需要引入一定的近似）。简单地说，问题能够分解成子问题来解决。动态规划的关键在于找出状态转移方程。 LeetCode 70 走楼梯题干假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DP">
+<meta property="og:url" content="https://rfvscj.github.io/2023/02/435bc725b6cb.html">
+<meta property="og:site_name" content="叔莫少州令">
+<meta property="og:description" content="概述动态规划适用于重叠子问题的问题，动态规划只能应用于有最优子结构的问题。最优子结构的意思是局部最优解能决定全局最优解（对有些问题这个要求并不能完全满足，故有时需要引入一定的近似）。简单地说，问题能够分解成子问题来解决。动态规划的关键在于找出状态转移方程。 LeetCode 70 走楼梯题干假设你正在爬楼梯。需要 n 阶你才能到达楼顶。 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rfvscj.github.io/images/Pasted%20image%2020230304153708.png">
+<meta property="article:published_time" content="2023-02-24T01:31:06.000Z">
+<meta property="article:modified_time" content="2023-07-25T00:06:35.247Z">
+<meta property="article:author" content="rfvscj">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rfvscj.github.io/images/Pasted%20image%2020230304153708.png">
+  
+  
+  
+  <title>DP - 叔莫少州令</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rfvscj.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>叔莫少州令</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg0.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-24 09:31" pubdate>
+          2023年2月24日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+    <script src="https://rfvscj.github.io/live2d-widget/autoload.js"></script>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">DP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>动态规划适用于<strong>重叠子问题</strong>的问题，动态规划只能应用于有最优子结构的问题。最优子结构的意思是局部最优解能决定全局最优解（对有些问题这个要求并不能完全满足，故有时需要引入一定的近似）。简单地说，<strong>问题能够分解成子问题来解决。</strong><br>动态规划的关键在于找出<strong>状态转移方程</strong>。</p>
+<h3 id="LeetCode-70-走楼梯"><a href="#LeetCode-70-走楼梯" class="headerlink" title="LeetCode 70 走楼梯"></a>LeetCode 70 走楼梯</h3><h4 id="题干"><a href="#题干" class="headerlink" title="题干"></a>题干</h4><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p>示例 1：</p>
+<p>输入：n &#x3D; 2<br>输出：2<br>解释：有两种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶</li>
+<li>2 阶<br>示例 2：</li>
+</ol>
+<p>输入：n &#x3D; 3<br>输出：3<br>解释：有三种方法可以爬到楼顶。</p>
+<ol>
+<li>1 阶 + 1 阶 + 1 阶</li>
+<li>1 阶 + 2 阶</li>
+<li>2 阶 + 1 阶</li>
+</ol>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>每次可以走1或2步，记dp[i]为到第i个台阶的所有走法。那么显然可以在第i-1个台阶走一步到第i个台阶，也可以在第i-2个台阶走两步到第i个台阶。于是有递推式<code>dp[i] = dp[i-1] + dp[i-2]</code><br>n &#x3D; 0时，无意义，但是作为递推式中的可能存在，可以设为1，也可以不管，i从3起记。<br>n &#x3D; 1时，1种走法。<br>n &#x3D; 2时，2种走法。<br>于是代码可写为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">climbStairs</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br>        dp = [<span class="hljs-number">1</span>] * (n + <span class="hljs-number">1</span>)  <span class="hljs-comment"># 注意这种操作只能用于一维，用在二维上会导致各行同时变化</span><br>        <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">2</span>:<br>            <span class="hljs-keyword">return</span> n<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n + <span class="hljs-number">1</span>):  <span class="hljs-comment"># 注意范围，最终要落到dp[n]</span><br>            dp[i] = dp[i-<span class="hljs-number">1</span>] + dp[i-<span class="hljs-number">2</span>]<br>        <span class="hljs-keyword">return</span> dp[n]<br></code></pre></td></tr></table></figure>
+<p>需要考虑到，dp[i]仅依赖于dp[i-1]和dp[i-2]，所以不必存储所有结果，可改写为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">climbStairs</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br>        pre1 = <span class="hljs-number">1</span><br>        pre2 = <span class="hljs-number">1</span><br>        cur = <span class="hljs-number">1</span><br>        <span class="hljs-comment"># n = 0 没有意义</span><br>        <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">2</span>:<br>            <span class="hljs-keyword">return</span> n<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n + <span class="hljs-number">1</span>):<br>            cur = pre1 + pre2<br>            pre2 = pre1<br>            pre1 = cur<br>        <span class="hljs-keyword">return</span> cur<br></code></pre></td></tr></table></figure>
+
+<h3 id="Leetcode-198-打家劫舍"><a href="#Leetcode-198-打家劫舍" class="headerlink" title="Leetcode 198 打家劫舍"></a>Leetcode 198 打家劫舍</h3><h4 id="题干-1"><a href="#题干-1" class="headerlink" title="题干"></a>题干</h4><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<p>示例 1：</p>
+<p>输入：[1,2,3,1]<br>输出：4<br>解释：偷窃 1 号房屋 (金额 &#x3D; 1) ，然后偷窃 3 号房屋 (金额 &#x3D; 3)。<br>     偷窃到的最高金额 &#x3D; 1 + 3 &#x3D; 4 。<br>示例 2：</p>
+<p>输入：[2,7,9,3,1]<br>输出：12<br>解释：偷窃 1 号房屋 (金额 &#x3D; 2), 偷窃 3 号房屋 (金额 &#x3D; 9)，接着偷窃 5 号房屋 (金额 &#x3D; 1)。<br>     偷窃到的最高金额 &#x3D; 2 + 9 + 1 &#x3D; 12 。</p>
+<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><p>设i间房最多偷dp[i]，对于每间房，可以选择偷或不偷。如果偷第i间，那么最多能偷dp[i-2]+m[i]；如果不偷，那么最多能偷dp[i-1]的钱。<br>所以得到状态转移方程<code>dp[i] = max(dp[i-1], dp[i-2] + m[i])</code><br>于是易得代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">rob</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:<br>        dp = [<span class="hljs-number">0</span>] * (<span class="hljs-built_in">len</span>(nums) + <span class="hljs-number">1</span>)<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span><br>        dp[<span class="hljs-number">1</span>] = nums[<span class="hljs-number">0</span>]<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, <span class="hljs-built_in">len</span>(nums) + <span class="hljs-number">1</span>):<br>            dp[i] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>], dp[i - <span class="hljs-number">2</span>] + nums[i-<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">return</span> dp[<span class="hljs-built_in">len</span>(nums)]<br></code></pre></td></tr></table></figure>
+<p>同样，dp[i]只依赖于dp[i-1]和dp[i-2]，可改写为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">rob</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:<br>        pre1 = nums[<span class="hljs-number">0</span>]<br>        pre2 = <span class="hljs-number">0</span><br>        cur = pre1<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(nums)):<br>            cur = <span class="hljs-built_in">max</span>(pre1, pre2 + nums[i])<br>            pre2 = pre1<br>            pre1 = cur<br>        <span class="hljs-keyword">return</span> cur<br></code></pre></td></tr></table></figure>
+
+<h3 id="Leetcode-413-等差数列划分"><a href="#Leetcode-413-等差数列划分" class="headerlink" title="Leetcode 413 等差数列划分"></a>Leetcode 413 等差数列划分</h3><h4 id="题干-2"><a href="#题干-2" class="headerlink" title="题干"></a>题干</h4><p>如果一个数列 至少有三个元素 ，并且任意两个相邻元素之差相同，则称该数列为等差数列。</p>
+<p>例如，[1,3,5,7,9]、[7,7,7,7] 和 [3,-1,-5,-9] 都是等差数列。<br>给你一个整数数组 nums ，返回数组 nums 中所有为等差数组的 子数组 个数。</p>
+<p>子数组 是数组中的一个连续序列。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [1,2,3,4]<br>输出：3<br>解释：nums 中有三个子等差数组：[1, 2, 3]、[2, 3, 4] 和 [1,2,3,4] 自身。<br>示例 2：</p>
+<p>输入：nums &#x3D; [1]<br>输出：0<br> <br>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 5000<br>-1000 &lt;&#x3D; nums[i] &lt;&#x3D; 1000</p>
+<h4 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h4><p>因为要求是<strong>连续</strong>等差数列，所以如果nums[i-3], nums[i-2], nums[i-1]是等差的，如果nums[i]与前面构成了等差，那么如果连续地到第i-1个位置能构成x个连续等差数列，第i个位置就能构成2x+1个，其中x个是未加上nums[i]的，x个是整体右移一位，1是到nums[i]的整个连续等差数列。<br>需要注意：如果nums[i]与前面不能构成等差呢？<strong>可能存在多个片段，所以不能直接存储到当前位置的所有可能。</strong><br>可以对每个位置，存储<strong>因当前位置，额外带来的可能。</strong><br>对位置i，如果<code>nums[i] - nums[i-1] == nums[i-1] - nums[i-2]</code>，那么这里形成了一个连续等差数列，对于等差数列，每加一位长度，<strong>每个长度的子集都会加一</strong>，并且多一个全集，如<br>三连等差，l3 +&#x3D; 1, 0-&gt; 1，增数1<br>四连等差，l3 +&#x3D; 1, 1 -&gt; 2; l4 +&#x3D; 1, 0 -&gt; 1，增数2<br>五连等差，l3 +&#x3D; 1, 2 -&gt; 3; l4 +&#x3D; 1, 1 -&gt; 2; l5 +&#x3D; 1, 0 -&gt; 1，增数3<br>也就是<code>dp[i] = dp[i-1] + 1</code>，只存储<strong>增数</strong>，最后对所有位置的增数求和，即所有可能。<br>代码很简单</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">numberOfArithmeticSlices</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:<br>        n = <span class="hljs-built_in">len</span>(nums)<br>        dp = [<span class="hljs-number">0</span>] * (n + <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">3</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n):<br>            <span class="hljs-keyword">if</span> nums[i] - nums[i - <span class="hljs-number">1</span>] == nums[i - <span class="hljs-number">1</span>] - nums[i - <span class="hljs-number">2</span>]:<br>                dp[i] = dp[i - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>  <span class="hljs-comment"># 注意理解</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">sum</span>(dp)<br></code></pre></td></tr></table></figure>
+
+<h3 id="Leetcode-64-最小路径和"><a href="#Leetcode-64-最小路径和" class="headerlink" title="Leetcode 64 最小路径和"></a>Leetcode 64 最小路径和</h3><h4 id="题干-3"><a href="#题干-3" class="headerlink" title="题干"></a>题干</h4><p>给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
+<p>说明：每次只能向下或者向右移动一步。</p>
+<p>示例 1：</p>
+<p><img src="/../../images/Pasted%20image%2020230304153708.png" srcset="/img/loading.gif" lazyload><br>输入：&#96;grid &#x3D; [[1,3,1],[1,5,1],[4,2,1]]<br>输出：7<br>解释：因为路径 1→3→1→1→1 的总和最小。<br>示例 2：</p>
+<p>输入：&#96;grid &#x3D; [[1,2,3],[4,5,6]]<br>输出：12</p>
+<p>提示：<br>m &#x3D;&#x3D; grid.length<br>n &#x3D;&#x3D; grid[i].length<br>1 &lt;&#x3D; m, n &lt;&#x3D; 200<br>0 &lt;&#x3D; grid[i][j] &lt;&#x3D; 100</p>
+<h4 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h4><p>或许可以用深度优先搜索，一旦所尝试路径大于已找到的路径，则剪枝<br>可以存储到达每个位置的最小路径<br><code>dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j] 加上边界处理， 最后取</code>dp[m][n]&#96;即可<br>代码可写为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">minPathSum</span>(<span class="hljs-params">self, grid: <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]]</span>) -&gt; <span class="hljs-built_in">int</span>:<br>        <span class="hljs-comment"># 式子 dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]</span><br>        m = <span class="hljs-built_in">len</span>(grid)<br>        n = <span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])<br>        line = [<span class="hljs-number">0</span>] * n<br>        dp = [line.copy() <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m)]  <span class="hljs-comment"># 注意不能用line乘哦</span><br>        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = grid[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(m):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>                <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> j == <span class="hljs-number">0</span>:<br>                    <span class="hljs-keyword">continue</span><br>                <span class="hljs-keyword">elif</span> i == <span class="hljs-number">0</span>:<br>                    dp[i][j] = dp[i][j - <span class="hljs-number">1</span>] + grid[i][j]<br>                <span class="hljs-keyword">elif</span> j == <span class="hljs-number">0</span>:<br>                    dp[i][j] = dp[i - <span class="hljs-number">1</span>][j] + grid[i][j]<br>                <span class="hljs-keyword">else</span>:<br>                    dp[i][j] = <span class="hljs-built_in">min</span>(dp[i - <span class="hljs-number">1</span>][j], dp[i][j - <span class="hljs-number">1</span>]) + grid[i][j]<br>        <span class="hljs-keyword">return</span> dp[m - <span class="hljs-number">1</span>][n - <span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LeetCode/" class="category-chain-item">LeetCode</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DP</div>
+      <div>https://rfvscj.github.io/2023/02/435bc725b6cb.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>rfvscj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/e478c968147c.html" title="招新考察点">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">招新考察点</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/af93c37a17dd.html" title="新学期研学计划">
+                        <span class="hidden-mobile">新学期研学计划</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

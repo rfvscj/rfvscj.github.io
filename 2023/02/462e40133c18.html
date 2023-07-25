@@ -25,7 +25,7 @@
 <meta property="og:description" content="概念回溯法（backtracking）是优先搜索的一种特殊情况，又称为试探法，常用于需要记录节点状态的深度优先搜索。通常来说，排列、组合、选择类问题使用回溯法比较方便。顾名思义，回溯法的核心是回溯。在搜索到某一节点的时候，如果我们发现目前的节点（及其子节点）并不是需求目标时，我们回退到原来的节点继续搜索，并且把在目前节点修改的状态还原。这样的好处是我们可以始终只对图的总状态进行修改，而非每次遍历时">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-10T10:21:27.000Z">
-<meta property="article:modified_time" content="2023-02-10T13:36:52.233Z">
+<meta property="article:modified_time" content="2023-07-24T23:56:22.314Z">
 <meta property="article:author" content="rfvscj">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -191,7 +191,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/bg0.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          5k 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          24 分钟
+          42 分钟
         
       </span>
     
@@ -276,7 +276,7 @@
               <div class="markdown-body">
                 
                 <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>回溯法（backtracking）是优先搜索的一种特殊情况，又称为试探法，常用于需要记录节点状<br>态的深度优先搜索。通常来说，<strong>排列、组合、选择</strong>类问题使用回溯法比较方便。<br>顾名思义，回溯法的核心是回溯。在搜索到某一节点的时候，如果我们发现目前的节点（及<br>其子节点）并不是需求目标时，我们回退到原来的节点继续搜索，并且把在目前节点修改的状态<br><strong>还原</strong>。这样的好处是我们可以始终只对图的总状态进行修改，而非每次遍历时新建一个图来储存<br>状态。在具体的写法上，它与普通的深度优先搜索一样，都有 [修改当前节点状态]→[递归子节<br>点] 的步骤，只是多了回溯的步骤，变成了 [修改当前节点状态]→[递归子节点]→[回改当前节点<br>状态]。<br>两个小诀窍，一是按引用传状态，二是所有的状态修改在递归完成后回改。<br>回溯法修改一般有两种情况，一种是修改最后一位输出，比如排列组合；一种是修改访问标<br>记，比如矩阵里搜字符串。</p>
-<h3 id="Leetcode-46"><a href="#Leetcode-46" class="headerlink" title="Leetcode 46"></a>Leetcode 46</h3><h4 id="题干"><a href="#题干" class="headerlink" title="题干"></a>题干</h4><p>给定一个<strong>不含重复数字</strong>的数组 nums ，返回其 <strong>所有可能的全排列</strong> 。你可以 <strong>按任意顺序</strong> 返回答案。</p>
+<h3 id="Leetcode-46-全排列"><a href="#Leetcode-46-全排列" class="headerlink" title="Leetcode 46 全排列"></a>Leetcode 46 全排列</h3><h4 id="题干"><a href="#题干" class="headerlink" title="题干"></a>题干</h4><p>给定一个<strong>不含重复数字</strong>的数组 nums ，返回其 <strong>所有可能的全排列</strong> 。你可以 <strong>按任意顺序</strong> 返回答案。</p>
 <p>示例 1：</p>
 <p>输入：nums &#x3D; [1,2,3]<br>输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]<br>示例 2：</p>
 <p>输入：nums &#x3D; [0,1]<br>输出：[[0,1],[1,0]]<br>示例 3：</p>
@@ -307,6 +307,31 @@
 
 <p>python版本有一点需要注意，res.append(nums)要用copy，因为python传值都是引用传值，最后nums会被改回，res也就变了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">permute</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]]:<br>        res = []<br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">backtrack</span>(<span class="hljs-params">nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], level</span>):<br>            <span class="hljs-keyword">if</span> level == <span class="hljs-built_in">len</span>(nums) - <span class="hljs-number">1</span>:<br>                <span class="hljs-comment"># print(nums)</span><br>                res.append(nums.copy())  <span class="hljs-comment"># 注意</span><br>                <span class="hljs-keyword">return</span> <br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(level, <span class="hljs-built_in">len</span>(nums)):<br>                nums[i], nums[level] = nums[level], nums[i]<br>                <span class="hljs-comment"># print(nums)</span><br>                backtrack(nums, level + <span class="hljs-number">1</span>)<br>                nums[i], nums[level] = nums[level], nums[i]<br>        backtrack(nums, <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
+
+<h3 id="Leetcode-77-组合"><a href="#Leetcode-77-组合" class="headerlink" title="Leetcode 77 组合"></a>Leetcode 77 组合</h3><h4 id="题干-1"><a href="#题干-1" class="headerlink" title="题干"></a>题干</h4><p>给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。</p>
+<p>你可以按 任何顺序 返回答案。</p>
+<p>示例 1：</p>
+<p>输入：n &#x3D; 4, k &#x3D; 2<br>输出：<br>[<br>  [2,4],<br>  [3,4],<br>  [2,3],<br>  [1,2],<br>  [1,3],<br>  [1,4],<br>]<br>示例 2：</p>
+<p>输入：n &#x3D; 1, k &#x3D; 1<br>输出：[[1]]
+ </p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; n &lt;&#x3D; 20<br>1 &lt;&#x3D; k &lt;&#x3D; n</p>
+<h4 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h4><p>求组合数，找k个数，以k作为指标，判断是否找到了足够的组合。<br>与上一个全排列相对应，全排列的思路是和后边交换位置，从而有顺序，而组合不要求顺序，就和后面的组合，组合后，再改回temp。其实这样相当于认为所有的组合都是不行的，搜索所有组合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">combine</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span>, k: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]]:<br>        res = []<br>        temp = []<br>        <span class="hljs-comment"># 递归时应用k做指标</span><br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">backtracking</span>(<span class="hljs-params">begin:<span class="hljs-built_in">int</span>, n: <span class="hljs-built_in">int</span>, k: <span class="hljs-built_in">int</span>, temp: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>):<br>            <span class="hljs-keyword">if</span> k == <span class="hljs-number">0</span>:<br>                <span class="hljs-comment"># 这时应当返回已确定的组合</span><br>                res.append(temp.copy())  <span class="hljs-comment"># 注意copy</span><br>                temp = []<br>                <span class="hljs-keyword">return</span><br>            <span class="hljs-comment"># 对每个数进行一次选择，只往后看</span><br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(begin, n + <span class="hljs-number">1</span>):  <span class="hljs-comment"># 注意包括n</span><br>                temp.append(i)<br>                backtracking(i + <span class="hljs-number">1</span>, n, k - <span class="hljs-number">1</span>, temp)<br>                temp.pop()<br><br>        backtracking(<span class="hljs-number">1</span>, n, k, temp)<br>        <span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="Leetcode-79-单词搜索"><a href="#Leetcode-79-单词搜索" class="headerlink" title="Leetcode 79 单词搜索"></a>Leetcode 79 单词搜索</h3><p>给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。</p>
+<p>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：board &#x3D; [[“A”,”B”,”C”,”E”],[“S”,”F”,”C”,”S”],[“A”,”D”,”E”,”E”]], word &#x3D; “ABCCED”<br>输出：true<br>示例 2：</p>
+<p>输入：board &#x3D; [[“A”,”B”,”C”,”E”],[“S”,”F”,”C”,”S”],[“A”,”D”,”E”,”E”]], word &#x3D; “SEE”<br>输出：true<br>示例 3：</p>
+<p>输入：board &#x3D; [[“A”,”B”,”C”,”E”],[“S”,”F”,”C”,”S”],[“A”,”D”,”E”,”E”]], word &#x3D; “ABCB”<br>输出：false
+ </p>
+<p>提示：</p>
+<p>m &#x3D;&#x3D; board.length<br>n &#x3D; board[i].length<br>1 &lt;&#x3D; m, n &lt;&#x3D; 6<br>1 &lt;&#x3D; word.length &lt;&#x3D; 15<br>board 和 word 仅由大小写英文字母组成</p>
+<h4 id="DFS-回溯"><a href="#DFS-回溯" class="headerlink" title="DFS+回溯"></a>DFS+回溯</h4><p>这算个正经的回溯。<br>首先，对于图中每个字母，都作为开始点，若匹配，则开始深度递归，状态矩阵用于记录是否访问过，若发现不能匹配，则回溯一部，并将状态位回复。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">exist</span>(<span class="hljs-params">self, board: <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]], word: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">bool</span>:<br>        <span class="hljs-comment"># 定义个状态矩阵</span><br>        status = []<br>        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> board:<br>            temp = []<br>            <span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> line:<br>                temp.append(<span class="hljs-number">1</span>)<br>            status.append(temp)<br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">backtracking</span>(<span class="hljs-params">board: <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]], word_part, x, y</span>):<br>            <span class="hljs-comment"># 判断越界</span><br>            <span class="hljs-keyword">if</span> x &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> y &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> x &gt;= <span class="hljs-built_in">len</span>(board) <span class="hljs-keyword">or</span> y &gt;= <span class="hljs-built_in">len</span>(board[<span class="hljs-number">0</span>]):<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>            <span class="hljs-comment"># 判断是否已用</span><br>            <span class="hljs-keyword">if</span> status[x][y] == <span class="hljs-number">0</span>:<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>            <span class="hljs-keyword">if</span> board[x][y] + word_part == word:<br>                <span class="hljs-comment"># 找到了</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>            <span class="hljs-keyword">if</span> board[x][y] == word[-<span class="hljs-number">1</span> -<span class="hljs-built_in">len</span>(word_part)]:  <span class="hljs-comment"># 找到第一个后开始四向试探</span><br>                status[x][y] = <span class="hljs-number">0</span><br>                <span class="hljs-keyword">if</span> backtracking(board, board[x][y] + word_part, x + <span class="hljs-number">1</span>, y):<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>                <span class="hljs-keyword">if</span> backtracking(board, board[x][y] + word_part, x, y + <span class="hljs-number">1</span>):<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>                <span class="hljs-keyword">if</span> backtracking(board, board[x][y] + word_part, x - <span class="hljs-number">1</span>, y):<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>                <span class="hljs-keyword">if</span> backtracking(board, board[x][y] + word_part, x, y - <span class="hljs-number">1</span>):<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>                status[x][y] = <span class="hljs-number">1</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br>        <span class="hljs-keyword">for</span> ix <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(board)):<br>            <span class="hljs-keyword">for</span> iy <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(board[<span class="hljs-number">0</span>])):<br>                <span class="hljs-keyword">if</span> backtracking(board, <span class="hljs-string">&#x27;&#x27;</span>, ix, iy):<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -324,7 +349,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/LeetCode101/" class="category-chain-item">LeetCode101</a>
+  <a href="/categories/LeetCode/" class="category-chain-item">LeetCode</a>
   
   
 
@@ -388,6 +413,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/02/af93c37a17dd.html" title="新学期研学计划">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">新学期研学计划</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

@@ -17,23 +17,31 @@
   <meta name="author" content="rfvscj">
   <meta name="keywords" content="">
   
-    <meta name="description" content="试试">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类 - LeetCode101">
-<meta property="og:url" content="https://rfvscj.github.io/categories/LeetCode101/index.html">
+    <meta name="description" content="已知交叉熵损失$$ce&#x3D;-\sum^{n}{i&#x3D;1}{y_ilog\hat{y_i}}$$对比损失$$loss{con}&#x3D;-log{\frac{e^{sim(i,i)&#x2F;\tau}}{\sum_{j&#x3D;1}^{N}{e^{sim(i,j)&#x2F;\tau}}}}$$ $$loss_{con}&#x3D;-\frac{1}{m}\sum_{i&amp;#x3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="交叉熵与对比损失">
+<meta property="og:url" content="https://rfvscj.github.io/2023/05/6c349570b12a.html">
 <meta property="og:site_name" content="叔莫少州令">
-<meta property="og:description" content="试试">
+<meta property="og:description" content="已知交叉熵损失$$ce&#x3D;-\sum^{n}{i&#x3D;1}{y_ilog\hat{y_i}}$$对比损失$$loss{con}&#x3D;-log{\frac{e^{sim(i,i)&#x2F;\tau}}{\sum_{j&#x3D;1}^{N}{e^{sim(i,j)&#x2F;\tau}}}}$$ $$loss_{con}&#x3D;-\frac{1}{m}\sum_{i&amp;#x3">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-11T01:56:09.000Z">
+<meta property="article:modified_time" content="2023-07-24T23:55:25.835Z">
 <meta property="article:author" content="rfvscj">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>分类 - LeetCode101 - 叔莫少州令</title>
+  <title>交叉熵与对比损失 - 叔莫少州令</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -83,7 +91,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -183,15 +191,55 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/bg0.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分类 - LeetCode101"></span>
+            <span id="subtitle" data-typed-text="交叉熵与对比损失"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-11 09:56" pubdate>
+          2023年5月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          492 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -208,46 +256,188 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2023</p>
-    
-    <a href="/2023/02/462e40133c18.html" class="list-group-item list-group-item-action">
-      <time>02-10</time>
-      <div class="list-group-item-title">搜索-回溯法</div>
-    </a>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">交叉熵与对比损失</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>已知交叉熵损失<br>$$ce&#x3D;-\sum^{n}<em>{i&#x3D;1}{y_ilog\hat{y_i}}$$<br>对比损失<br>$$loss</em>{con}&#x3D;-log{\frac{e^{sim(i,i)&#x2F;\tau}}{\sum_{j&#x3D;1}^{N}{e^{sim(i,j)&#x2F;\tau}}}}$$</p>
+<p>$$loss_{con}&#x3D;-\frac{1}{m}\sum_{i&#x3D;1}^{m}{log{\frac{1}{1+e^{-sim(h_i^{-r},h_i^{orig})&#x2F;\tau}}}}-\frac{\lambda}{n}\sum_{j&#x3D;1}^{n}{log{\frac{1}{1+e^{-sim(h_i^{-r},h_i^{-e})&#x2F;\tau}}}}-\frac{1-\lambda}{n}\sum_{j&#x3D;1}^{n}{log{\frac{e^{-sim(h_i^{-r},h_i^{-e})&#x2F;\tau}}{1+e^{-sim(h_i^{-r},h_i^{-e})&#x2F;\tau}}}}$$$</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
   
     
-    <a href="/2023/01/bdd6de1f587c.html" class="list-group-item list-group-item-action">
-      <time>01-27</time>
-      <div class="list-group-item-title">搜索-DFS</div>
-    </a>
+      <span class="category-chain">
+        
+  <a href="/categories/undefined/" class="category-chain-item">undefined</a>
   
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>交叉熵与对比损失</div>
+      <div>https://rfvscj.github.io/2023/05/6c349570b12a.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>rfvscj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/d63b43ee1366.html" title="latex备忘">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">latex备忘</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/f79810992b84.html" title="自定义loss">
+                        <span class="hidden-mobile">自定义loss</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
 </div>
 
 
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
     
 
     
@@ -342,6 +532,99 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
 
