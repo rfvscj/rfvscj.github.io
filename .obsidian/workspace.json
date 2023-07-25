@@ -30,19 +30,9 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "17b51bb572b2becc",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.2.8"
-              }
-            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -193,6 +183,15 @@
   },
   "active": "f9a00f516686cae3",
   "lastOpenFiles": [
+    "node_modules/bindings/package.json",
+    "node_modules/file-uri-to-path/package.json",
+    "node_modules/nan/nan_callbacks_12_inl.h",
+    "node_modules/file-uri-to-path",
+    "node_modules/nan",
+    "source/img/bg6.png",
+    "source/img/芽衣.png",
+    "public/img/bg0.png",
+    "public/img/bg5.png",
     "source/img/bg5.png",
     "source/img/bg0.png",
     "public/img/bg0.jpg",
@@ -203,10 +202,6 @@
     "node_modules/css/lib/stringify/index.js",
     "node_modules/css/lib/stringify/compiler.js",
     "node_modules/css/lib/parse/index.js",
-    "node_modules/css/lib/stringify",
-    "node_modules/css/lib/parse",
-    "node_modules/css/lib",
-    "node_modules/css/package.json",
     "node_modules/file-uri-to-path/README.md",
     "node_modules/file-uri-to-path/History.md",
     "node_modules/nan/tools/README.md",
@@ -233,11 +228,6 @@
     "node_modules/elkjs/LICENSE.md",
     "node_modules/cytoscape-fcose/node_modules/layout-base/layout-schema.png",
     "node_modules/luxon/build/readme.md",
-    "node_modules/cytoscape-fcose/demo/incrementalConstraints.gif",
-    "node_modules/cytoscape-fcose/demo/demo.gif",
-    "node_modules/layout-base/layout-schema.png",
-    "source/img/bg5.jpg",
-    "source/img/wallhaven-626880.jpg",
-    "source/img/bg0.jpg"
+    "node_modules/cytoscape-fcose/demo/incrementalConstraints.gif"
   ]
 }
