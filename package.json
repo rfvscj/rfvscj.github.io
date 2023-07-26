@@ -37,7 +37,7 @@
     "live2d-widget-model-haruto": "^1.0.5",
     "live2d-widget-model-shizuku": "^1.0.5",
     "marked": "^5.1.2",
-    "mermaid": "^10.2.4"
+    "mermaid": "^10.3.0"
   },
   "devDependencies": {
     "husky": "^8.0.3"
