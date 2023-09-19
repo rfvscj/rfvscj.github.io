@@ -2,6 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://rfvscj.github.io/2023/09/96dc19aee99d.html</loc>
+    
+    <lastmod>2023-09-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://rfvscj.github.io/2023/07/708dfce3cca8.html</loc>
+    
+    <lastmod>2023-09-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://rfvscj.github.io/2023/08/179c0d1956f0.html</loc>
+    
+    <lastmod>2023-09-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://rfvscj.github.io/2023/07/c5926932c268.html</loc>
+    
+    <lastmod>2023-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://rfvscj.github.io/2023/02/435bc725b6cb.html</loc>
     
     <lastmod>2023-07-25</lastmod>
@@ -21,15 +57,6 @@
   
   <url>
     <loc>https://rfvscj.github.io/2023/02/462e40133c18.html</loc>
-    
-    <lastmod>2023-07-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://rfvscj.github.io/2023/05/d63b43ee1366.html</loc>
     
     <lastmod>2023-07-24</lastmod>
     
@@ -301,7 +328,7 @@
 
   <url>
     <loc>https://rfvscj.github.io/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -309,7 +336,7 @@
   
   <url>
     <loc>https://rfvscj.github.io/tags/%E6%89%B9%E8%AF%84/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -318,63 +345,70 @@
   
   <url>
     <loc>https://rfvscj.github.io/categories/undefined/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/%E5%85%B3%E4%BA%8E%E6%88%91/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/%E6%83%B3%E6%B3%95%E4%B8%8E%E8%AE%A1%E5%88%92/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/%E8%AF%84/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/%E4%B9%A6%E5%BF%83/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/%E9%9B%B6%E7%A2%8E%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://rfvscj.github.io/categories/LeetCode/</loc>
-    <lastmod>2023-07-25</lastmod>
+    <lastmod>2023-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://rfvscj.github.io/categories/nlp-quiz/</loc>
+    <lastmod>2023-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

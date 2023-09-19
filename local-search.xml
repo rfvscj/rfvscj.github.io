@@ -4,16 +4,73 @@
   
   
   <entry>
-    <title>latex备忘</title>
-    <link href="/2023/05/d63b43ee1366.html"/>
-    <url>/2023/05/d63b43ee1366.html</url>
+    <title>quiz1</title>
+    <link href="/2023/09/96dc19aee99d.html"/>
+    <url>/2023/09/96dc19aee99d.html</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="NLP-quiz-1"><a href="#NLP-quiz-1" class="headerlink" title="NLP quiz 1"></a>NLP quiz 1</h2><h3 id="tuple和list的区别"><a href="#tuple和list的区别" class="headerlink" title="tuple和list的区别"></a>tuple和list的区别</h3><p>list可变，tuple不可变。<br>这里有个知识点是，对不可变对象的赋值如何进行。</p><h3 id="micro-F1和macro-F1的区别"><a href="#micro-F1和macro-F1的区别" class="headerlink" title="micro F1和macro F1的区别"></a>micro F1和macro F1的区别</h3><h4 id="FN，TN，FP，TP"><a href="#FN，TN，FP，TP" class="headerlink" title="FN，TN，FP，TP"></a>FN，TN，FP，TP</h4><p>F和T修饰的是后边的PN，即，FN是实际上正样本，被错误识别成了负样本</p><h4 id="macroF1"><a href="#macroF1" class="headerlink" title="macroF1"></a>macroF1</h4><p>分别对每个类别按照二分类，计算一个对应的F1，然后取平均即可。<br>数据不平衡时效果较好，<strong>对稀有类别更好。</strong></p><h4 id="microF1"><a href="#microF1" class="headerlink" title="microF1"></a>microF1</h4><p>不区分类别，计算整体的F1</p><ol><li>对每个类别，分别计算对应的FP，TP，FN，TN</li></ol><h3 id="介绍GBDT"><a href="#介绍GBDT" class="headerlink" title="介绍GBDT"></a>介绍GBDT</h3><h4 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h4><p>基学习器间串行，有依赖</p><h4 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h4><p>基学习器间并行，无依赖</p><p>Gradient Boosting Decision Tree，梯度提升决策树，是Boosting算法<br>构造一组弱的学习器（树），多棵决策树结果<strong>累加</strong>（不平均）作为最终输出。<br>每一次计算前一个学习器的残差。<br>适用于稠密数据和数值型特征，NLP表现不好</p><h3 id="为什么用交叉熵不用MAE"><a href="#为什么用交叉熵不用MAE" class="headerlink" title="为什么用交叉熵不用MAE"></a>为什么用交叉熵不用MAE</h3><ol><li>有效惩罚错误样本，因为有指数，偏差大了损失会很大</li><li>推动模型更快地收敛</li></ol><h3 id="RNN的缺陷"><a href="#RNN的缺陷" class="headerlink" title="RNN的缺陷"></a>RNN的缺陷</h3><h3 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h3><p>因为sigmoid导数小于零，所以多级下去，会导致梯度越来越小，导致梯度消失</p><h4 id="对所有输入相同对待"><a href="#对所有输入相同对待" class="headerlink" title="对所有输入相同对待"></a>对所有输入相同对待</h4><p>没有区分那些信息可以是无用的，每次进来一个输入，都无区别的进行计算</p><h3 id="介绍子词分词和BPE"><a href="#介绍子词分词和BPE" class="headerlink" title="介绍子词分词和BPE"></a>介绍子词分词和BPE</h3><h4 id="子词分词"><a href="#子词分词" class="headerlink" title="子词分词"></a>子词分词</h4><p>就是把词分得更细，一定程度上解决OOV问题</p><h4 id="BPE"><a href="#BPE" class="headerlink" title="BPE"></a>BPE</h4><p>Byte Pair Encoding，字节对编码<br>先将词分为单个字符，然后用另一个字符替换频率最高的<strong>一对</strong>字符，如此循环直到结束（设定期望量）<br>每次频率最高的字符对，merge，而且可参与后续的merge<br>最后剩余的替换为&lt;unk&gt;<br>一般中文不需要BPE，英文需要，bert词表里的##就是</p><h3 id="不同词向量的区别"><a href="#不同词向量的区别" class="headerlink" title="不同词向量的区别"></a>不同词向量的区别</h3><h4 id="相同"><a href="#相同" class="headerlink" title="相同"></a>相同</h4><p>都是分布式语义，词义取决于上下文</p><h4 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h4><ul><li>CBOW 用周围词预测当前词</li><li>Skip-gram 用当前词预测周围词</li></ul><p>不能处理OOV词</p><h4 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h4><ul><li>输入层 输入为Embedding后的单词和ngram表征</li><li>隐藏层 多个词向量平均</li><li>输出层 文档类别标签，分层softmax<br>词向量怎么训的，暂且不知道<br>能应对OOV</li></ul><h4 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h4><p>动态表征</p><h3 id="Attention的时间复杂度"><a href="#Attention的时间复杂度" class="headerlink" title="Attention的时间复杂度"></a>Attention的时间复杂度</h3><h4 id="矩阵乘法复杂度"><a href="#矩阵乘法复杂度" class="headerlink" title="矩阵乘法复杂度"></a>矩阵乘法复杂度</h4><p>$n<em>m$和$m</em>n$的矩阵相乘，复杂度是$O(n^2m)$<br><strong>但是务必注意，三个矩阵相乘，本质上是先两两乘，再两两乘，是先后的操作，只是计算量翻了一倍，而不是复杂度等级提升。</strong></p><h4 id="缩放点积注意力复杂度"><a href="#缩放点积注意力复杂度" class="headerlink" title="缩放点积注意力复杂度"></a>缩放点积注意力复杂度</h4><p>$$Attention&#x3D;Softmax(\frac{QK^T}{\sqrt{D_K}})V$$<br>QK相乘，$O(n^3)$，softmax， $O(n)$，中间结果再乘V，$O(n^3)$，整体复杂度是$O(n^3)$</p><h3 id="为什么Attention除以-sqrt-D-k"><a href="#为什么Attention除以-sqrt-D-k" class="headerlink" title="为什么Attention除以$\sqrt{D_k}$"></a>为什么Attention除以$\sqrt{D_k}$</h3><ol><li>首先要除以一个数，是为了让softmax的值不太大，否则由于指数的特性，偏导容易趋于零</li><li>为什么除以$\sqrt{D_K}$，是为了控制方差为1不变</li></ol><h3 id="BERT的结构"><a href="#BERT的结构" class="headerlink" title="BERT的结构"></a>BERT的结构</h3><p>HuggingFace实现</p><h3 id="GPT1，2，3，3-5的区别"><a href="#GPT1，2，3，3-5的区别" class="headerlink" title="GPT1，2，3，3.5的区别"></a>GPT1，2，3，3.5的区别</h3><h3 id="InstructGPT介绍"><a href="#InstructGPT介绍" class="headerlink" title="InstructGPT介绍"></a>InstructGPT介绍</h3><h3 id="介绍对比学习"><a href="#介绍对比学习" class="headerlink" title="介绍对比学习"></a>介绍对比学习</h3><h3 id="LoRA微调的原理"><a href="#LoRA微调的原理" class="headerlink" title="LoRA微调的原理"></a>LoRA微调的原理</h3><h3 id="Coding：二叉树的序列化与反序列化"><a href="#Coding：二叉树的序列化与反序列化" class="headerlink" title="Coding：二叉树的序列化与反序列化"></a>Coding：二叉树的序列化与反序列化</h3>]]></content>
     
     
     <categories>
       
-      <category>undefined</category>
+      <category>nlp_quiz</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>f1-score</title>
+    <link href="/2023/08/179c0d1956f0.html"/>
+    <url>/2023/08/179c0d1956f0.html</url>
+    
+    <content type="html"><![CDATA[<h3 id="f1-Score"><a href="#f1-Score" class="headerlink" title="f1-Score"></a>f1-Score</h3><p>$f1&#x3D;2<em>\frac{p</em>r}{p+r}$</p><h4 id="precision"><a href="#precision" class="headerlink" title="precision"></a>precision</h4><p>即准确率</p><h4 id="recall"><a href="#recall" class="headerlink" title="recall"></a>recall</h4><p>即召回率</p><h3 id="micro-F1"><a href="#micro-F1" class="headerlink" title="micro-F1"></a>micro-F1</h3><p><strong>取值范围</strong>：(0, 1)；<br><strong>权重倾向</strong>：每一个样本的权重都相同；<br><strong>适用环境</strong>：多分类不平衡，若数据极度不平衡会影响结果；<br><strong>计算方式</strong>：计算总的召回率和总的准确率然后算</p><h3 id="macro-F1"><a href="#macro-F1" class="headerlink" title="macro-F1"></a>macro-F1</h3><p><strong>取值范围</strong>：(0, 1)；<br><strong>取值范围</strong>：每一类别的权重都相同；<br><strong>适用环境</strong>：多分类问题，不受数据不平衡影响，容易受到识别性高（高recall、高precision）的类别影响；<br><strong>计算方式</strong>：计算每个类别的F1-score，然后求平均</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>零碎笔记</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>堆</title>
+    <link href="/2023/07/708dfce3cca8.html"/>
+    <url>/2023/07/708dfce3cca8.html</url>
+    
+    <content type="html"><![CDATA[<p>堆，是一个完全二叉树（不是满二叉树），且层与层之间大小有序，子节点均不大于父节点，或子节点均不小于父节点。<br>堆的应用：</p><ul><li>topK</li><li>优先队列</li></ul><p>由于堆是完全二叉树，所以堆可以用一个层次遍历的列表表示，利用完全二叉树的性质<br>某节点在列表中下标的为i，则<br>左子节点下标2i + 1<br>右子节点下标2i + 2<br>其父节点下标(i-1) &#x2F;&#x2F; 2</p><p>堆用树实现并不好整</p><p>利用列表建堆，复杂度似乎是O(n)</p><p>堆的调整应从最后一个非叶子节点开始</p><h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>把顶和最后一个元素交换，然后前n-1个元素作为子堆，顶被破坏，顶下沉，依次进行，如此可求topk，但这是蠢法</p><h3 id="堆topk的正确姿势"><a href="#堆topk的正确姿势" class="headerlink" title="堆topk的正确姿势"></a>堆topk的正确姿势</h3><p>维护一个大小为k的堆</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>LeetCode</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>尾递归</title>
+    <link href="/2023/07/c5926932c268.html"/>
+    <url>/2023/07/c5926932c268.html</url>
+    
+    <content type="html"><![CDATA[<p>简单来讲，尾递归是指在一个方法内部，递归调用后直接return，没有任何多余的指令了。<br>尾递归在支持的编译器中会被优化，调用后直接释放对应的栈空间，所以性能比普通递归要好。<br>例如简单的累加函数，</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">acc</span>(<span class="hljs-params">n</span>):<br><span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span>:<br><span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br><span class="hljs-keyword">return</span> n + acc(n - <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure><p>以上代码不是尾递归，因为计算了<code>acc(n - 1)</code>后，还要再进行一步+n。<br>尾递归写法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">acc</span>(<span class="hljs-params">n, <span class="hljs-built_in">sum</span>=<span class="hljs-number">0</span></span>):  <span class="hljs-comment"># 函数意义：sum + n的累加</span><br><span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span>:<br><span class="hljs-keyword">return</span> <span class="hljs-built_in">sum</span> + n  <span class="hljs-comment"># n==1时，sum为1后边的和</span><br><span class="hljs-keyword">return</span> acc(n - <span class="hljs-number">1</span>, <span class="hljs-built_in">sum</span> + n)  <span class="hljs-comment"># n&gt;1，sum加上当前的n作为n及之后的所有和</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>LeetCode</category>
       
     </categories>
     
