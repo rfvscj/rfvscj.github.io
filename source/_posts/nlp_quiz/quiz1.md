@@ -38,7 +38,7 @@ Gradient Boosting Decision Tree，梯度提升决策树，是Boosting算法
 2. 推动模型更快地收敛
 
 ### RNN的缺陷
-### 梯度消失
+#### 梯度消失
 因为sigmoid导数小于零，所以多级下去，会导致梯度越来越小，导致梯度消失
 #### 对所有输入相同对待
 没有区分那些信息可以是无用的，每次进来一个输入，都无区别的进行计算
@@ -82,10 +82,29 @@ QK相乘，$O(n^3)$，softmax， $O(n)$，中间结果再乘V，$O(n^3)$，整�
 1. 首先要除以一个数，是为了让softmax的值不太大，否则由于指数的特性，偏导容易趋于零
 2. 为什么除以$\sqrt{D_K}$，是为了控制方差为1不变
 ### BERT的结构
-HuggingFace实现
+- 位置编码是可学习的
+- 用的GELU激活函数
+- 先加，再norm
+- attention后边还有一个dense层
+#### google实现
+layer_norm加在了attention_output与前一层的残差连接后和attention_output与ffn的残差连接处
+#### HuggingFace实现
+和google的实现好像是一样的，需要注意attetion和ffn之间还有个dense层，然后 add&norm，接入ffn，又是一个ffn
+#### Annotated Transformer Encoder
+- 位置编码是sin/cos函数计算出来的固定值
+- 先norm，然后通过attention/ffn，然后和未norm的残差连接
+- 比bert少一个attention后的dense层
+- 用的ReLU
 
-### GPT1，2，3，3.5的区别
+### GPT-1，2，3，3.5的区别
+#### GPT-1
+参数量1.17亿，和bert相当
+无监督后又有监督地微调
+#### GPT-2
+参数量15亿，即1.5B
 
+#### GPT-3
+参数量1750亿，175B
 ### InstructGPT介绍
 
 ### 介绍对比学习
