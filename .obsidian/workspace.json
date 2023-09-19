@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "d0c3b66dba4af857",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -102,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/nlp_quiz/quiz1.md",
+                "file": "conflict-files-obsidian-git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +132,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/nlp_quiz/quiz1.md",
+                "file": "conflict-files-obsidian-git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -142,7 +155,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/nlp_quiz/quiz1.md"
+                "file": "conflict-files-obsidian-git.md"
               }
             }
           },
@@ -172,8 +185,10 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "bb4004bf3474b4e9",
+  "active": "d0c3b66dba4af857",
   "lastOpenFiles": [
+    "source/_posts/nlp_quiz/quiz1.md",
+    "conflict-files-obsidian-git.md",
     "node_modules/bindings/package.json",
     "node_modules/bindings/LICENSE.md",
     "node_modules/bindings/bindings.js",
@@ -208,7 +223,6 @@
     "node_modules/nan/doc/errors.md",
     "node_modules/nan/doc/converters.md",
     "node_modules/nan/doc/callback.md",
-    "node_modules/nan/doc/buffers.md",
     "public/img/bg6.png",
     "source/img/bg6.png",
     "source/img/芽衣.png",

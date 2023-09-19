@@ -33,11 +33,11 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-fluid": "^1.9.4",
     "hexo-theme-landscape": "^1.0.0",
-    "hexo-theme-next": "^8.17.1",
+    "hexo-theme-next": "^8.18.1",
     "live2d-widget-model-haruto": "^1.0.5",
     "live2d-widget-model-shizuku": "^1.0.5",
-    "marked": "^5.1.2",
-    "mermaid": "^10.2.4"
+    "marked": "^9.0.2",
+    "mermaid": "^10.4.0"
   },
   "devDependencies": {
     "husky": "^8.0.3"
