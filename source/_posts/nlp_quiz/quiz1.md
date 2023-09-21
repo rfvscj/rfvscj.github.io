@@ -97,15 +97,35 @@ layer_norm加在了attention_output与前一层的残差连接后和attention_ou
 - 用的ReLU
 
 ### GPT-1，2，3，3.5的区别
+模型结构
+![](../../images/Pasted%20image%2020230920105631.png)
 #### GPT-1
 参数量1.17亿，和bert相当
 无监督后又有监督地微调
 #### GPT-2
 参数量15亿，即1.5B
+去掉了有监督
 
 #### GPT-3
+2020年
 参数量1750亿，175B
+#### GPT-3.5
+一系列大模型，如text-davinci-00x，gpt-3.5-turbo，
+包括InstructGPT
+其中gpt-3.5-turbo就是ChatGPT
+#### InstructGPT
+- 指令微调
+- RLHF
+#### ChatGPT
+与InstructGPT的区别仅在于数据采集方式
 ### InstructGPT介绍
+SFT->RM->PPO
+#### SFT
+
+#### RLHF
+- RM：由标注者对答案排序
+
+- PPO：
 
 ### 介绍对比学习
 
