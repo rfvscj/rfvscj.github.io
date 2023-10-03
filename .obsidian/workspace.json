@@ -13,9 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/nlp_quiz/quiz1.md",
+                "file": "source/_posts/零碎笔记/数据挖掘40问.md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "1d3650bb234914ff",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.4.14"
               }
             }
           }
@@ -102,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/nlp_quiz/quiz1.md",
+                "file": "source/_posts/零碎笔记/数据挖掘40问.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/nlp_quiz/quiz1.md",
+                "file": "source/_posts/零碎笔记/数据挖掘40问.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -142,7 +152,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/nlp_quiz/quiz1.md"
+                "file": "source/_posts/零碎笔记/数据挖掘40问.md"
               }
             }
           },
@@ -174,20 +184,25 @@
   },
   "active": "8ea440465ec77701",
   "lastOpenFiles": [
+    "public/images/Pasted image 20231003154923.png",
+    "public/2023/09/90d071581942.html",
+    "public/2023/10/4de1d0cb011e.html",
+    "public/2023/10",
+    "public/archives/2023/10/index.html",
+    "public/archives/2023/10",
+    "source/images/Pasted image 20231003154923.png",
+    "source/_posts/零碎笔记/集成学习.md",
+    "source/_posts/零碎笔记/数据挖掘40问.md",
+    "source/_posts/nlp_quiz/quiz1.md",
+    "public/images/Pasted image 20230920105631.png",
     "source/images/Pasted image 20230920105631.png",
     "node_modules/hexo-renderer-ejs/node_modules/ejs/package.json",
     "conflict-files-obsidian-git.md",
-    "source/_posts/nlp_quiz/quiz1.md",
     "node_modules/bindings/package.json",
     "node_modules/bindings/LICENSE.md",
     "node_modules/bindings/bindings.js",
     "node_modules/bindings",
     "node_modules/nan",
-    "node_modules/fsevents",
-    "node_modules/file-uri-to-path",
-    "node_modules/file-uri-to-path/package.json",
-    "node_modules/nan/nan_callbacks_12_inl.h",
-    "node_modules/mermaid/dist/rendering-util/uid.d.ts",
     "node_modules/d3-sankey/node_modules/d3-array/README.md",
     "node_modules/d3-sankey/node_modules/internmap/README.md",
     "node_modules/nunjucks/node_modules/commander/Readme.md",
@@ -208,17 +223,12 @@
     "node_modules/nan/doc/methods.md",
     "node_modules/nan/doc/maybe_types.md",
     "node_modules/nan/doc/json.md",
-    "node_modules/nan/doc/errors.md",
-    "node_modules/nan/doc/converters.md",
     "public/img/bg6.png",
     "source/img/bg6.png",
     "source/img/芽衣.png",
     "public/img/bg0.png",
     "public/img/bg5.png",
     "source/img/bg5.png",
-    "source/img/bg0.png",
-    "public/img/bg0.jpg",
-    "public/img/bg5.jpg",
-    "node_modules/cytoscape-fcose/node_modules/layout-base/layout-schema.png"
+    "source/img/bg0.png"
   ]
 }
