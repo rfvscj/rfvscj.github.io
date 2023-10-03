@@ -17,23 +17,21 @@
   <meta name="author" content="rfvscj">
   <meta name="keywords" content="">
   
-    <meta name="description" content="NLP quiz 1tuple和list的区别list可变，tuple不可变。这里有个知识点是，对不可变对象的赋值如何进行。 micro F1和macro F1的区别FN，TN，FP，TPF和T修饰的是后边的PN，即，FN是实际上正样本，被错误识别成了负样本 macroF1分别对每个类别按照二分类，计算一个对应的F1，然后取平均即可。数据不平衡时效果较好，对稀有类别更好。 microF1不区分类别">
+    <meta name="description" content="集成学习种类Boosting弱学习器集成为强学习器，每次在前一个学习器的基础上，对分错的样本增加权重串行继承AdaBoost：自适应boosting Bagging简言之就是多个取平均，作用与dropout类似并行集成，减小方差bagging+决策树&#x3D;随机森林 Stacking">
 <meta property="og:type" content="article">
-<meta property="og:title" content="quiz1">
-<meta property="og:url" content="https://rfvscj.github.io/2023/09/96dc19aee99d.html">
+<meta property="og:title" content="集成学习">
+<meta property="og:url" content="https://rfvscj.github.io/2023/09/90d071581942.html">
 <meta property="og:site_name" content="叔莫少州令">
-<meta property="og:description" content="NLP quiz 1tuple和list的区别list可变，tuple不可变。这里有个知识点是，对不可变对象的赋值如何进行。 micro F1和macro F1的区别FN，TN，FP，TPF和T修饰的是后边的PN，即，FN是实际上正样本，被错误识别成了负样本 macroF1分别对每个类别按照二分类，计算一个对应的F1，然后取平均即可。数据不平衡时效果较好，对稀有类别更好。 microF1不区分类别">
+<meta property="og:description" content="集成学习种类Boosting弱学习器集成为强学习器，每次在前一个学习器的基础上，对分错的样本增加权重串行继承AdaBoost：自适应boosting Bagging简言之就是多个取平均，作用与dropout类似并行集成，减小方差bagging+决策树&#x3D;随机森林 Stacking">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://rfvscj.github.io/images/Pasted%20image%2020230920105631.png">
-<meta property="article:published_time" content="2023-09-19T02:25:55.000Z">
-<meta property="article:modified_time" content="2023-09-20T10:17:28.166Z">
+<meta property="article:published_time" content="2023-09-25T01:45:40.000Z">
+<meta property="article:modified_time" content="2023-10-03T08:30:04.074Z">
 <meta property="article:author" content="rfvscj">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rfvscj.github.io/images/Pasted%20image%2020230920105631.png">
   
   
   
-  <title>quiz1 - 叔莫少州令</title>
+  <title>集成学习 - 叔莫少州令</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="quiz1"></span>
+            <span id="subtitle" data-typed-text="集成学习"></span>
           
         </div>
 
@@ -210,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-19 10:25" pubdate>
-          2023年9月19日 上午
+        <time datetime="2023-09-25 09:45" pubdate>
+          2023年9月25日 上午
         </time>
       </span>
     
@@ -222,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          142 字
         
       </span>
     
@@ -233,7 +231,7 @@
         
         
         
-          16 分钟
+          2 分钟
         
       </span>
     
@@ -272,79 +270,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">quiz1</h1>
+            <h1 style="display: none">集成学习</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="NLP-quiz-1"><a href="#NLP-quiz-1" class="headerlink" title="NLP quiz 1"></a>NLP quiz 1</h2><h3 id="tuple和list的区别"><a href="#tuple和list的区别" class="headerlink" title="tuple和list的区别"></a>tuple和list的区别</h3><p>list可变，tuple不可变。<br>这里有个知识点是，对不可变对象的赋值如何进行。</p>
-<h3 id="micro-F1和macro-F1的区别"><a href="#micro-F1和macro-F1的区别" class="headerlink" title="micro F1和macro F1的区别"></a>micro F1和macro F1的区别</h3><h4 id="FN，TN，FP，TP"><a href="#FN，TN，FP，TP" class="headerlink" title="FN，TN，FP，TP"></a>FN，TN，FP，TP</h4><p>F和T修饰的是后边的PN，即，FN是实际上正样本，被错误识别成了负样本</p>
-<h4 id="macroF1"><a href="#macroF1" class="headerlink" title="macroF1"></a>macroF1</h4><p>分别对每个类别按照二分类，计算一个对应的F1，然后取平均即可。<br>数据不平衡时效果较好，<strong>对稀有类别更好。</strong></p>
-<h4 id="microF1"><a href="#microF1" class="headerlink" title="microF1"></a>microF1</h4><p>不区分类别，计算整体的F1</p>
-<ol>
-<li>对每个类别，分别计算对应的FP，TP，FN，TN</li>
-</ol>
-<h3 id="介绍GBDT"><a href="#介绍GBDT" class="headerlink" title="介绍GBDT"></a>介绍GBDT</h3><h4 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h4><p>基学习器间串行，有依赖</p>
-<h4 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h4><p>基学习器间并行，无依赖</p>
-<p>Gradient Boosting Decision Tree，梯度提升决策树，是Boosting算法<br>构造一组弱的学习器（树），多棵决策树结果<strong>累加</strong>（不平均）作为最终输出。<br>每一次计算前一个学习器的残差。<br>适用于稠密数据和数值型特征，NLP表现不好</p>
-<h3 id="为什么用交叉熵不用MAE"><a href="#为什么用交叉熵不用MAE" class="headerlink" title="为什么用交叉熵不用MAE"></a>为什么用交叉熵不用MAE</h3><ol>
-<li>有效惩罚错误样本，因为有指数，偏差大了损失会很大</li>
-<li>推动模型更快地收敛</li>
-</ol>
-<h3 id="RNN的缺陷"><a href="#RNN的缺陷" class="headerlink" title="RNN的缺陷"></a>RNN的缺陷</h3><h4 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h4><p>因为sigmoid导数小于零，所以多级下去，会导致梯度越来越小，导致梯度消失</p>
-<h4 id="对所有输入相同对待"><a href="#对所有输入相同对待" class="headerlink" title="对所有输入相同对待"></a>对所有输入相同对待</h4><p>没有区分那些信息可以是无用的，每次进来一个输入，都无区别的进行计算</p>
-<h3 id="介绍子词分词和BPE"><a href="#介绍子词分词和BPE" class="headerlink" title="介绍子词分词和BPE"></a>介绍子词分词和BPE</h3><h4 id="子词分词"><a href="#子词分词" class="headerlink" title="子词分词"></a>子词分词</h4><p>就是把词分得更细，一定程度上解决OOV问题</p>
-<h4 id="BPE"><a href="#BPE" class="headerlink" title="BPE"></a>BPE</h4><p>Byte Pair Encoding，字节对编码<br>先将词分为单个字符，然后用另一个字符替换频率最高的<strong>一对</strong>字符，如此循环直到结束（设定期望量）<br>每次频率最高的字符对，merge，而且可参与后续的merge<br>最后剩余的替换为&lt;unk&gt;<br>一般中文不需要BPE，英文需要，bert词表里的##就是</p>
-<h3 id="不同词向量的区别"><a href="#不同词向量的区别" class="headerlink" title="不同词向量的区别"></a>不同词向量的区别</h3><h4 id="相同"><a href="#相同" class="headerlink" title="相同"></a>相同</h4><p>都是分布式语义，词义取决于上下文</p>
-<h4 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h4><ul>
-<li>CBOW 用周围词预测当前词</li>
-<li>Skip-gram 用当前词预测周围词</li>
-</ul>
-<p>不能处理OOV词</p>
-<h4 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h4><ul>
-<li>输入层 输入为Embedding后的单词和ngram表征</li>
-<li>隐藏层 多个词向量平均</li>
-<li>输出层 文档类别标签，分层softmax<br>词向量怎么训的，暂且不知道<br>能应对OOV</li>
-</ul>
-<h4 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h4><p>动态表征</p>
-<h3 id="Attention的时间复杂度"><a href="#Attention的时间复杂度" class="headerlink" title="Attention的时间复杂度"></a>Attention的时间复杂度</h3><h4 id="矩阵乘法复杂度"><a href="#矩阵乘法复杂度" class="headerlink" title="矩阵乘法复杂度"></a>矩阵乘法复杂度</h4><p>$n<em>m$和$m</em>n$的矩阵相乘，复杂度是$O(n^2m)$<br><strong>但是务必注意，三个矩阵相乘，本质上是先两两乘，再两两乘，是先后的操作，只是计算量翻了一倍，而不是复杂度等级提升。</strong></p>
-<h4 id="缩放点积注意力复杂度"><a href="#缩放点积注意力复杂度" class="headerlink" title="缩放点积注意力复杂度"></a>缩放点积注意力复杂度</h4><p>$$Attention&#x3D;Softmax(\frac{QK^T}{\sqrt{D_K}})V$$<br>QK相乘，$O(n^3)$，softmax， $O(n)$，中间结果再乘V，$O(n^3)$，整体复杂度是$O(n^3)$</p>
-<h3 id="为什么Attention除以-sqrt-D-k"><a href="#为什么Attention除以-sqrt-D-k" class="headerlink" title="为什么Attention除以$\sqrt{D_k}$"></a>为什么Attention除以$\sqrt{D_k}$</h3><ol>
-<li>首先要除以一个数，是为了让softmax的值不太大，否则由于指数的特性，偏导容易趋于零</li>
-<li>为什么除以$\sqrt{D_K}$，是为了控制方差为1不变</li>
-</ol>
-<h3 id="BERT的结构"><a href="#BERT的结构" class="headerlink" title="BERT的结构"></a>BERT的结构</h3><ul>
-<li>位置编码是可学习的</li>
-<li>用的GELU激活函数</li>
-<li>先加，再norm</li>
-<li>attention后边还有一个dense层</li>
-</ul>
-<h4 id="google实现"><a href="#google实现" class="headerlink" title="google实现"></a>google实现</h4><p>layer_norm加在了attention_output与前一层的残差连接后和attention_output与ffn的残差连接处</p>
-<h4 id="HuggingFace实现"><a href="#HuggingFace实现" class="headerlink" title="HuggingFace实现"></a>HuggingFace实现</h4><p>和google的实现好像是一样的，需要注意attetion和ffn之间还有个dense层，然后 add&amp;norm，接入ffn，又是一个ffn</p>
-<h4 id="Annotated-Transformer-Encoder"><a href="#Annotated-Transformer-Encoder" class="headerlink" title="Annotated Transformer Encoder"></a>Annotated Transformer Encoder</h4><ul>
-<li>位置编码是sin&#x2F;cos函数计算出来的固定值</li>
-<li>先norm，然后通过attention&#x2F;ffn，然后和未norm的残差连接</li>
-<li>比bert少一个attention后的dense层</li>
-<li>用的ReLU</li>
-</ul>
-<h3 id="GPT-1，2，3，3-5的区别"><a href="#GPT-1，2，3，3-5的区别" class="headerlink" title="GPT-1，2，3，3.5的区别"></a>GPT-1，2，3，3.5的区别</h3><p>模型结构<br><img src="/../../images/Pasted%20image%2020230920105631.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="GPT-1"><a href="#GPT-1" class="headerlink" title="GPT-1"></a>GPT-1</h4><p>参数量1.17亿，和bert相当<br>无监督后又有监督地微调</p>
-<h4 id="GPT-2"><a href="#GPT-2" class="headerlink" title="GPT-2"></a>GPT-2</h4><p>参数量15亿，即1.5B<br>去掉了有监督</p>
-<h4 id="GPT-3"><a href="#GPT-3" class="headerlink" title="GPT-3"></a>GPT-3</h4><p>2020年<br>参数量1750亿，175B</p>
-<h4 id="GPT-3-5"><a href="#GPT-3-5" class="headerlink" title="GPT-3.5"></a>GPT-3.5</h4><p>一系列大模型，如text-davinci-00x，gpt-3.5-turbo，<br>包括InstructGPT<br>其中gpt-3.5-turbo就是ChatGPT</p>
-<h4 id="InstructGPT"><a href="#InstructGPT" class="headerlink" title="InstructGPT"></a>InstructGPT</h4><ul>
-<li>指令微调</li>
-<li>RLHF</li>
-</ul>
-<h4 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h4><p>与InstructGPT的区别仅在于数据采集方式</p>
-<h3 id="InstructGPT介绍"><a href="#InstructGPT介绍" class="headerlink" title="InstructGPT介绍"></a>InstructGPT介绍</h3><p>SFT-&gt;RM-&gt;PPO</p>
-<h4 id="SFT"><a href="#SFT" class="headerlink" title="SFT"></a>SFT</h4><h4 id="RLHF"><a href="#RLHF" class="headerlink" title="RLHF"></a>RLHF</h4><ul>
-<li><p>RM：由标注者对答案排序</p>
-</li>
-<li><p>PPO：</p>
-</li>
-</ul>
-<h3 id="介绍对比学习"><a href="#介绍对比学习" class="headerlink" title="介绍对比学习"></a>介绍对比学习</h3><h3 id="LoRA微调的原理"><a href="#LoRA微调的原理" class="headerlink" title="LoRA微调的原理"></a>LoRA微调的原理</h3><h3 id="Coding：二叉树的序列化与反序列化"><a href="#Coding：二叉树的序列化与反序列化" class="headerlink" title="Coding：二叉树的序列化与反序列化"></a>Coding：二叉树的序列化与反序列化</h3>
+                <h3 id="集成学习种类"><a href="#集成学习种类" class="headerlink" title="集成学习种类"></a>集成学习种类</h3><h4 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h4><p>弱学习器集成为强学习器，每次在前一个学习器的基础上，对分错的样本增加权重<br><strong>串行</strong>继承<br>AdaBoost：自适应boosting</p>
+<h4 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h4><p>简言之就是多个取平均，作用与dropout类似<br><strong>并行</strong>集成，减小方差<br>bagging+决策树&#x3D;随机森林</p>
+<h4 id="Stacking"><a href="#Stacking" class="headerlink" title="Stacking"></a>Stacking</h4>
                 
               </div>
             
@@ -362,7 +295,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/nlp-quiz/" class="category-chain-item">nlp_quiz</a>
+  <a href="/categories/%E9%9B%B6%E7%A2%8E%E7%AC%94%E8%AE%B0/" class="category-chain-item">零碎笔记</a>
   
   
 
@@ -382,8 +315,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>quiz1</div>
-      <div>https://rfvscj.github.io/2023/09/96dc19aee99d.html</div>
+      <div>集成学习</div>
+      <div>https://rfvscj.github.io/2023/09/90d071581942.html</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +328,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月19日</div>
+          <div>2023年9月25日</div>
         </div>
       
       
@@ -427,9 +360,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/90d071581942.html" title="集成学习">
+                      <a href="/2023/10/4de1d0cb011e.html" title="数据挖掘40问">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">集成学习</span>
+                        <span class="hidden-mobile">数据挖掘40问</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -437,8 +370,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/179c0d1956f0.html" title="f1-score">
-                        <span class="hidden-mobile">f1-score</span>
+                      <a href="/2023/09/96dc19aee99d.html" title="quiz1">
+                        <span class="hidden-mobile">quiz1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

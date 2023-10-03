@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="R-IdNbP9VV6M5omk5_9W5-Kt2CwI5CPpGKpzJeQ87jU" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon_ren.png">
+  <link rel="icon" href="/img/icon_ren.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="rfvscj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="参见：40 道数据挖掘面试真题，一次肝够 - 墨天轮 (modb.pro) 1. PCA中为什么要做正交变换PCA的思想是把n维特征映射到k维上（k&lt;n），这k维是新的正交特征，也被称为主成分。PCA的目的是选择最少的主成分。正交变换后，各主成分的坐标虽然改变，但是相对位置不变。 2. 给定一个数据集，这个数据集有缺失值，且这些缺失值分布在离中值有 1 个标准偏差的范围内。百分之多少的数据不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘40问">
+<meta property="og:url" content="https://rfvscj.github.io/2023/10/4de1d0cb011e.html">
+<meta property="og:site_name" content="叔莫少州令">
+<meta property="og:description" content="参见：40 道数据挖掘面试真题，一次肝够 - 墨天轮 (modb.pro) 1. PCA中为什么要做正交变换PCA的思想是把n维特征映射到k维上（k&lt;n），这k维是新的正交特征，也被称为主成分。PCA的目的是选择最少的主成分。正交变换后，各主成分的坐标虽然改变，但是相对位置不变。 2. 给定一个数据集，这个数据集有缺失值，且这些缺失值分布在离中值有 1 个标准偏差的范围内。百分之多少的数据不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rfvscj.github.io/images/Pasted%20image%2020231003154923.png">
+<meta property="article:published_time" content="2023-10-03T07:28:29.000Z">
+<meta property="article:modified_time" content="2023-10-03T08:30:04.074Z">
+<meta property="article:author" content="rfvscj">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rfvscj.github.io/images/Pasted%20image%2020231003154923.png">
+  
+  
+  
+  <title>数据挖掘40问 - 叔莫少州令</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rfvscj.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>叔莫少州令</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg0.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据挖掘40问"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-03 15:28" pubdate>
+          2023年10月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+    <script src="https://rfvscj.github.io/live2d-widget/autoload.js"></script>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据挖掘40问</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>参见：<a target="_blank" rel="noopener" href="https://www.modb.pro/db/86064">40 道数据挖掘面试真题，一次肝够 - 墨天轮 (modb.pro)</a></p>
+<h3 id="1-PCA中为什么要做正交变换"><a href="#1-PCA中为什么要做正交变换" class="headerlink" title="1. PCA中为什么要做正交变换"></a>1. PCA中为什么要做正交变换</h3><p>PCA的思想是把n维特征映射到k维上（k&lt;n），这k维是新的正交特征，也被称为主成分。PCA的目的是选择最少的主成分。正交变换后，各主成分的坐标虽然改变，但是相对位置不变。</p>
+<h3 id="2-给定一个数据集，这个数据集有缺失值，且这些缺失值分布在离中值有-1-个标准偏差的范围内。百分之多少的数据不会受到影响？为什么？"><a href="#2-给定一个数据集，这个数据集有缺失值，且这些缺失值分布在离中值有-1-个标准偏差的范围内。百分之多少的数据不会受到影响？为什么？" class="headerlink" title="2. 给定一个数据集，这个数据集有缺失值，且这些缺失值分布在离中值有 1 个标准偏差的范围内。百分之多少的数据不会受到影响？为什么？"></a>2. 给定一个数据集，这个数据集有缺失值，且这些缺失值分布在离中值有 1 个标准偏差的范围内。百分之多少的数据不会受到影响？为什么？</h3><p>由于缺失值分布在中值附近，所以可以假设符合正态分布。<br>对于正态分布，68%的数据分布在离中值一个标准差的区间，95%的两个标准差，99%的三个标准差。<br><img src="/../../images/Pasted%20image%2020231003154923.png" srcset="/img/loading.gif" lazyload><br>所以剩下的32%不会受到影响。</p>
+<h3 id="3-给你一个癌症检测的数据集，你已经建好了分类模型，取得了96％的精度。如果不满意你的模型性能的话，你可以做些什么呢？"><a href="#3-给你一个癌症检测的数据集，你已经建好了分类模型，取得了96％的精度。如果不满意你的模型性能的话，你可以做些什么呢？" class="headerlink" title="3. 给你一个癌症检测的数据集，你已经建好了分类模型，取得了96％的精度。如果不满意你的模型性能的话，你可以做些什么呢？"></a>3. 给你一个癌症检测的数据集，你已经建好了分类模型，取得了96％的精度。如果不满意你的模型性能的话，你可以做些什么呢？</h3><p>需要注意，癌症检测，属于<strong>不平衡</strong>数据集，更关注的是另外4%，所以只看精度指标并不合适。<br>还需要看灵敏度（真阳性率，即，预测为阳的，希望尽量是对的）和特异性（真阴性率，即预测是阴的，希望真的没问题）。<br>如果在4%上表现不好，可以进行：</p>
+<ol>
+<li>欠采样、过采样、SMOTE（Synthetic Minority Oversampling Technique即合成少数类过采样技术）</li>
+<li>通过概率验证和AUC-ROC曲线找到最佳阈值来找到预测阈值</li>
+<li>给分类分配权重，样本较少的分类给以较大的权重</li>
+<li>使用异常检测</li>
+</ol>
+<h3 id="4-对于不平衡数据集，有什么应对方案？"><a href="#4-对于不平衡数据集，有什么应对方案？" class="headerlink" title="4. 对于不平衡数据集，有什么应对方案？"></a>4. 对于不平衡数据集，有什么应对方案？</h3><ol>
+<li>从训练集入手：过采样（小种类复制多次，易过拟合）、欠采样（大种类少采样，易欠拟合），EasyEnssemble（多次下采样，训练多个分类器）。</li>
+<li>从学习算法入手：数据合成（SMOTE）、数据加权、一分类或异常检测</li>
+</ol>
+<h3 id="5-什么是-K-fold-交叉验证？"><a href="#5-什么是-K-fold-交叉验证？" class="headerlink" title="5. 什么是 K-fold 交叉验证？"></a>5. 什么是 K-fold 交叉验证？</h3><p>把原始数据随机分为K份，取其中一份作为验证集，另外K-1份作为训练集，从而进行K次重复实验，得到K个实验结果，用于评价模型的泛化能力。</p>
+<h3 id="6-简述准确率-accuracy-、召回率-Recall-统计量的含义？"><a href="#6-简述准确率-accuracy-、召回率-Recall-统计量的含义？" class="headerlink" title="6. 简述准确率(accuracy)、召回率(Recall)统计量的含义？"></a>6. 简述准确率(accuracy)、召回率(Recall)统计量的含义？</h3><p>准确率是查准率，被认为是正确的，有多少被分对。<br>召回率是查全率，即所有的正样本中，有多少被识别出。</p>
+<h3 id="7-简述-F-值-F-Measure-统计量的含义？"><a href="#7-简述-F-值-F-Measure-统计量的含义？" class="headerlink" title="7. 简述 F 值(F-Measure)统计量的含义？"></a>7. 简述 F 值(F-Measure)统计量的含义？</h3><h3 id="8-简述-ROC-曲线统计量的含义？"><a href="#8-简述-ROC-曲线统计量的含义？" class="headerlink" title="8. 简述 ROC 曲线统计量的含义？"></a>8. 简述 ROC 曲线统计量的含义？</h3><h3 id="9-如何画出一个-ROC-曲线？"><a href="#9-如何画出一个-ROC-曲线？" class="headerlink" title="9. 如何画出一个 ROC 曲线？"></a>9. 如何画出一个 ROC 曲线？</h3><h3 id="10-简述-PR-曲线统计量的含义？"><a href="#10-简述-PR-曲线统计量的含义？" class="headerlink" title="10. 简述 PR 曲线统计量的含义？"></a>10. 简述 PR 曲线统计量的含义？</h3><h3 id="11-什么是-SMOTE-算法？"><a href="#11-什么是-SMOTE-算法？" class="headerlink" title="11. 什么是 SMOTE 算法？"></a>11. 什么是 SMOTE 算法？</h3><h3 id="12-简述-G-mean-统计量的含义？"><a href="#12-简述-G-mean-统计量的含义？" class="headerlink" title="12. 简述 G-mean 统计量的含义？"></a>12. 简述 G-mean 统计量的含义？</h3><h3 id="13-简述-AUC-曲线统计量的含义？"><a href="#13-简述-AUC-曲线统计量的含义？" class="headerlink" title="13. 简述 AUC 曲线统计量的含义？"></a>13. 简述 AUC 曲线统计量的含义？</h3><h3 id="14-SMOTE-算法有什么缺点？如何改进？"><a href="#14-SMOTE-算法有什么缺点？如何改进？" class="headerlink" title="14. SMOTE 算法有什么缺点？如何改进？"></a>14. SMOTE 算法有什么缺点？如何改进？</h3><h3 id="15-简述什么是调和平均数并指出其应用及性质？"><a href="#15-简述什么是调和平均数并指出其应用及性质？" class="headerlink" title="15. 简述什么是调和平均数并指出其应用及性质？"></a>15. 简述什么是调和平均数并指出其应用及性质？</h3><h3 id="16-EasyEnsemble-算法？"><a href="#16-EasyEnsemble-算法？" class="headerlink" title="16. EasyEnsemble 算法？"></a>16. EasyEnsemble 算法？</h3><h3 id="17-什么是凸包？"><a href="#17-什么是凸包？" class="headerlink" title="17. 什么是凸包？"></a>17. 什么是凸包？</h3><h3 id="18-BalanceCascad-算法和-EasyEnsemble-有什么异同？"><a href="#18-BalanceCascad-算法和-EasyEnsemble-有什么异同？" class="headerlink" title="18. BalanceCascad 算法和 EasyEnsemble 有什么异同？"></a>18. BalanceCascad 算法和 EasyEnsemble 有什么异同？</h3><h3 id="19-你会在时间序列数据集上使用什么交叉验证技术？是用-k-倍或LOOCV？"><a href="#19-你会在时间序列数据集上使用什么交叉验证技术？是用-k-倍或LOOCV？" class="headerlink" title="19. 你会在时间序列数据集上使用什么交叉验证技术？是用 k 倍或LOOCV？"></a>19. 你会在时间序列数据集上使用什么交叉验证技术？是用 k 倍或LOOCV？</h3><h3 id="20-常见的过采样方法有哪些以用来应对样本不平衡问题？"><a href="#20-常见的过采样方法有哪些以用来应对样本不平衡问题？" class="headerlink" title="20. 常见的过采样方法有哪些以用来应对样本不平衡问题？"></a>20. 常见的过采样方法有哪些以用来应对样本不平衡问题？</h3><h3 id="21-给你一个缺失值多于-30-的数据集？比方说，在-50-个变量中，有-8-个变量的缺失值都多于-30-。你对此如何处理？"><a href="#21-给你一个缺失值多于-30-的数据集？比方说，在-50-个变量中，有-8-个变量的缺失值都多于-30-。你对此如何处理？" class="headerlink" title="21. 给你一个缺失值多于 30%的数据集？比方说，在 50 个变量中，有 8 个变量的缺失值都多于 30%。你对此如何处理？"></a>21. 给你一个缺失值多于 30%的数据集？比方说，在 50 个变量中，有 8 个变量的缺失值都多于 30%。你对此如何处理？</h3><h3 id="22-什么是协同过滤算法？"><a href="#22-什么是协同过滤算法？" class="headerlink" title="22. 什么是协同过滤算法？"></a>22. 什么是协同过滤算法？</h3><h3 id="23-当在解决一个分类问题时，出于验证的目的，你已经将训练集随机抽样地分成训练集和验证集。你对你的模型能在未看见的数据上有好的表现非常有信心，因为你的验证精度高。但是，在得到很差的精度后，你大失所望。什么地方出了错？"><a href="#23-当在解决一个分类问题时，出于验证的目的，你已经将训练集随机抽样地分成训练集和验证集。你对你的模型能在未看见的数据上有好的表现非常有信心，因为你的验证精度高。但是，在得到很差的精度后，你大失所望。什么地方出了错？" class="headerlink" title="23. 当在解决一个分类问题时，出于验证的目的，你已经将训练集随机抽样地分成训练集和验证集。你对你的模型能在未看见的数据上有好的表现非常有信心，因为你的验证精度高。但是，在得到很差的精度后，你大失所望。什么地方出了错？"></a>23. 当在解决一个分类问题时，出于验证的目的，你已经将训练集随机抽样地分成训练集和验证集。你对你的模型能在未看见的数据上有好的表现非常有信心，因为你的验证精度高。但是，在得到很差的精度后，你大失所望。什么地方出了错？</h3><h3 id="24-在-k-means-或-kNN，我们是用欧氏距离来计算最近的邻居之间的距离。为什么不用曼哈顿距离？"><a href="#24-在-k-means-或-kNN，我们是用欧氏距离来计算最近的邻居之间的距离。为什么不用曼哈顿距离？" class="headerlink" title="24. 在 k-means 或 kNN，我们是用欧氏距离来计算最近的邻居之间的距离。为什么不用曼哈顿距离？"></a>24. 在 k-means 或 kNN，我们是用欧氏距离来计算最近的邻居之间的距离。为什么不用曼哈顿距离？</h3><h3 id="25-考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？"><a href="#25-考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？" class="headerlink" title="25. 考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？"></a>25. 考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？</h3><h3 id="26-什么时候正则化在机器学习中是有必要的？"><a href="#26-什么时候正则化在机器学习中是有必要的？" class="headerlink" title="26. 什么时候正则化在机器学习中是有必要的？"></a>26. 什么时候正则化在机器学习中是有必要的？</h3><h3 id="27-考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？"><a href="#27-考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？" class="headerlink" title="27. 考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？"></a>27. 考虑到机器学习有这么多算法，给定一个数据集，你如何决定使用哪一个算法？</h3><h3 id="28-OLS-是用于线性回归，最大似然是用于逻辑回归。请解释以上描述。"><a href="#28-OLS-是用于线性回归，最大似然是用于逻辑回归。请解释以上描述。" class="headerlink" title="28. OLS 是用于线性回归，最大似然是用于逻辑回归。请解释以上描述。"></a>28. OLS 是用于线性回归，最大似然是用于逻辑回归。请解释以上描述。</h3><h3 id="29-一个有-1000-列和-1-百万行的训练数据集。这个数据集是基于分类问题的。你来降低该数据集的维度以减少模型计算时间。你的机器内存有限，你会怎么做？（你可以自由做各种实际操作假设）"><a href="#29-一个有-1000-列和-1-百万行的训练数据集。这个数据集是基于分类问题的。你来降低该数据集的维度以减少模型计算时间。你的机器内存有限，你会怎么做？（你可以自由做各种实际操作假设）" class="headerlink" title="29. 一个有 1000 列和 1 百万行的训练数据集。这个数据集是基于分类问题的。你来降低该数据集的维度以减少模型计算时间。你的机器内存有限，你会怎么做？（你可以自由做各种实际操作假设）"></a>29. 一个有 1000 列和 1 百万行的训练数据集。这个数据集是基于分类问题的。你来降低该数据集的维度以减少模型计算时间。你的机器内存有限，你会怎么做？（你可以自由做各种实际操作假设）</h3><h3 id="30-KNN-中的-K-是如何选取的？"><a href="#30-KNN-中的-K-是如何选取的？" class="headerlink" title="30. KNN 中的 K 是如何选取的？"></a>30. KNN 中的 K 是如何选取的？</h3><h3 id="31-防止过拟合的方法有哪些？"><a href="#31-防止过拟合的方法有哪些？" class="headerlink" title="31. 防止过拟合的方法有哪些？"></a>31. 防止过拟合的方法有哪些？</h3><h3 id="32-机器学习中为何要经常对数据做归一化？"><a href="#32-机器学习中为何要经常对数据做归一化？" class="headerlink" title="32. 机器学习中为何要经常对数据做归一化？"></a>32. 机器学习中为何要经常对数据做归一化？</h3><h3 id="33-什么是欠采样和过采样？"><a href="#33-什么是欠采样和过采样？" class="headerlink" title="33. 什么是欠采样和过采样？"></a>33. 什么是欠采样和过采样？</h3><h3 id="34-不平衡数据集处理中基于数据集的应对方案有哪些？"><a href="#34-不平衡数据集处理中基于数据集的应对方案有哪些？" class="headerlink" title="34. 不平衡数据集处理中基于数据集的应对方案有哪些？"></a>34. 不平衡数据集处理中基于数据集的应对方案有哪些？</h3><h3 id="35-二分类问题如何转化为一分类问题？"><a href="#35-二分类问题如何转化为一分类问题？" class="headerlink" title="35. 二分类问题如何转化为一分类问题？"></a>35. 二分类问题如何转化为一分类问题？</h3><h3 id="36-如何通过增加惩罚项来提高稀有数据的预测准确率？"><a href="#36-如何通过增加惩罚项来提高稀有数据的预测准确率？" class="headerlink" title="36. 如何通过增加惩罚项来提高稀有数据的预测准确率？"></a>36. 如何通过增加惩罚项来提高稀有数据的预测准确率？</h3><h3 id="37-L1-和-L2-有什么区别？"><a href="#37-L1-和-L2-有什么区别？" class="headerlink" title="37. L1 和 L2 有什么区别？"></a>37. L1 和 L2 有什么区别？</h3><h3 id="38-CNN-最成功的应用是在-CV，那为什么-NLP-和-Speech-的很多问题也可以用-CNN-解出来？为什么-AlphaGo-里也用了-CNN？这几个不相关的问题的相似性在哪里？CNN-通过什么手段抓住了这个共性？"><a href="#38-CNN-最成功的应用是在-CV，那为什么-NLP-和-Speech-的很多问题也可以用-CNN-解出来？为什么-AlphaGo-里也用了-CNN？这几个不相关的问题的相似性在哪里？CNN-通过什么手段抓住了这个共性？" class="headerlink" title="38. CNN 最成功的应用是在 CV，那为什么 NLP 和 Speech 的很多问题也可以用 CNN 解出来？为什么 AlphaGo 里也用了 CNN？这几个不相关的问题的相似性在哪里？CNN 通过什么手段抓住了这个共性？"></a>38. CNN 最成功的应用是在 CV，那为什么 NLP 和 Speech 的很多问题也可以用 CNN 解出来？为什么 AlphaGo 里也用了 CNN？这几个不相关的问题的相似性在哪里？CNN 通过什么手段抓住了这个共性？</h3><h3 id="39-实现对比-LSTM-结构推导，为什么比-RNN-好？"><a href="#39-实现对比-LSTM-结构推导，为什么比-RNN-好？" class="headerlink" title="39. 实现对比 LSTM 结构推导，为什么比 RNN 好？"></a>39. 实现对比 LSTM 结构推导，为什么比 RNN 好？</h3><h3 id="40-请简要说说-EM-算法？"><a href="#40-请简要说说-EM-算法？" class="headerlink" title="40. 请简要说说 EM 算法？"></a>40. 请简要说说 EM 算法？</h3>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9B%B6%E7%A2%8E%E7%AC%94%E8%AE%B0/" class="category-chain-item">零碎笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据挖掘40问</div>
+      <div>https://rfvscj.github.io/2023/10/4de1d0cb011e.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>rfvscj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/90d071581942.html" title="集成学习">
+                        <span class="hidden-mobile">集成学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
