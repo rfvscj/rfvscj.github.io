@@ -31,7 +31,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -84,6 +85,14 @@
               "type": "file-tree-view",
               "state": {}
             }
+          },
+          {
+            "id": "6989f05d18c6a89b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ],
         "currentTab": 3
@@ -106,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/LeetCode101/DP.md",
+                "file": "source/_posts/LeetCode101/搜索-回溯法.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +132,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/LeetCode101/DP.md",
+                "file": "source/_posts/LeetCode101/搜索-回溯法.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +155,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/LeetCode101/DP.md"
+                "file": "source/_posts/LeetCode101/搜索-回溯法.md"
               }
             }
           },
@@ -167,21 +176,21 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "canvas:新建白板": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
-      "canvas:Create new canvas": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "f0327f82d31335f8",
+  "active": "2f99a4e3ff8a93ce",
   "lastOpenFiles": [
-    "source/_posts/解决方案/Hexo相关.md",
-    "source/_posts/LeetCode101/搜索-回溯法.md",
-    "source/_posts/LeetCode101/搜索-DFS.md",
     "source/_posts/LeetCode101/DP.md",
+    "source/_posts/LeetCode101/搜索-回溯法.md",
+    "source/_posts/解决方案/Hexo相关.md",
+    "source/_posts/LeetCode101/搜索-DFS.md",
     "source/_posts/零碎笔记/集束搜索和贪心搜索.md",
     "conflict-files-obsidian-git.md",
     "source/_posts/零碎笔记/自定义loss.md",
