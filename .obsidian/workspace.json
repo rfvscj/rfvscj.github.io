@@ -11,8 +11,12 @@
             "id": "4ad3e2c6100c5a0a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/想法与计划/博客完善计划.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/想法与计划/博客完善计划.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "source/_posts/想法与计划/博客完善计划.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "source/_posts/想法与计划/博客完善计划.md"
+              }
             }
           }
         ]
@@ -150,12 +158,22 @@
   },
   "active": "4ad3e2c6100c5a0a",
   "lastOpenFiles": [
+    "source/_posts/笔记/Transformer.md",
+    "source/_posts/想法与计划/减假暂演示系统计划书.md",
     "source/_posts/资源/readme.md",
+    "source/_posts/零碎笔记/f1-score.md",
+    "source/_posts/nlp_quiz/quiz1.md",
+    "source/_posts/零碎笔记/pipeline.md",
+    "source/_posts/LeetCode/堆.md",
+    "source/_posts/LeetCode/尾递归.md",
+    "source/_posts/LeetCode/DP.md",
+    "public/2023/12/df0b873a9599.html",
+    "public/2023/12/87b308018502.html",
+    "public/2023/12",
     "source/_posts/评论/关于网络游戏管理办法草案引发的事情的思考与评论.md",
     "source/_posts/评论/贩卖死亡.md",
     "source/_posts/评论/战争与和平.md",
     "source/_posts/评论",
-    "source/_posts/笔记/Transformer.md",
     "source/_posts/笔记",
     "public/img/bg6.png",
     "public/img/bg0.png",
@@ -167,9 +185,6 @@
     "public/categories/nlp-quiz/index.html",
     "public/categories/nlp-quiz",
     "public/archives/2023/10/index.html",
-    "public/archives/2023/10",
-    "public/categories/LeetCode/index.html",
-    "public/categories/LeetCode",
     "conflict-files-obsidian-git.md"
   ]
 }
