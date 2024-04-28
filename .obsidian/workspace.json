@@ -1,52 +1,35 @@
 {
   "main": {
-    "id": "edeb4a2d53afaa1a",
+    "id": "621440f7049fddc2",
     "type": "split",
     "children": [
       {
-        "id": "1d68bf4fbb7edc98",
+        "id": "aab92b299f94a7b3",
         "type": "tabs",
         "children": [
           {
-            "id": "f0327f82d31335f8",
+            "id": "4ad3e2c6100c5a0a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/LeetCode101/DP.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2f99a4e3ff8a93ce",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/LeetCode101/搜索-回溯法.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "4171a2cfc0f2c331",
+    "id": "f5efe9872f5ffa19",
     "type": "split",
     "children": [
       {
-        "id": "e44a2c1954b3e526",
+        "id": "4d7b3592d327f31c",
         "type": "tabs",
         "children": [
           {
-            "id": "c6c20c342a08b007",
+            "id": "cec8176d89812f29",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -56,7 +39,7 @@
             }
           },
           {
-            "id": "89dafc6d74486b28",
+            "id": "598d822075fc6eaf",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -71,26 +54,18 @@
             }
           },
           {
-            "id": "45bedfa0301737d5",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {}
-            }
-          },
-          {
-            "id": "bb4004bf3474b4e9",
-            "type": "leaf",
-            "state": {
-              "type": "file-tree-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "6989f05d18c6a89b",
+            "id": "1579f11228db6eb7",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "a218a787bb98d484",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
               "state": {}
             }
           }
@@ -102,20 +77,19 @@
     "width": 300
   },
   "right": {
-    "id": "ebd4b83ed948d6d2",
+    "id": "1135a009f95639ae",
     "type": "split",
     "children": [
       {
-        "id": "5de1abbdfa5783de",
+        "id": "736f0938c6c56fd6",
         "type": "tabs",
         "children": [
           {
-            "id": "e66af89fedbef832",
+            "id": "e24b962543170b84",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/LeetCode101/搜索-回溯法.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,19 +101,18 @@
             }
           },
           {
-            "id": "4a8bbae38e8222d1",
+            "id": "b5f53c099d3fd2dc",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/LeetCode101/搜索-回溯法.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "d076efa6860b5a70",
+            "id": "d9b6410fdb8652ef",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -150,52 +123,33 @@
             }
           },
           {
-            "id": "437b2237c49a4604",
+            "id": "91be4a48790c1214",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "source/_posts/LeetCode101/搜索-回溯法.md"
-              }
-            }
-          },
-          {
-            "id": "f9a00f516686cae3",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
               "state": {}
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "canvas:新建白板": false,
+      "file-tree-alternative:File Tree Alternative Plugin": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "file-tree-alternative:File Tree Alternative Plugin": false
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "2f99a4e3ff8a93ce",
+  "active": "4ad3e2c6100c5a0a",
   "lastOpenFiles": [
-    "source/_posts/LeetCode101/DP.md",
-    "source/_posts/LeetCode101/搜索-回溯法.md",
-    "source/_posts/解决方案/Hexo相关.md",
-    "source/_posts/LeetCode101/搜索-DFS.md",
-    "source/_posts/零碎笔记/集束搜索和贪心搜索.md",
-    "conflict-files-obsidian-git.md",
-    "source/_posts/零碎笔记/自定义loss.md",
-    "source/_posts/零碎笔记/强化学习篇.md",
-    "source/_posts/零碎笔记/pipeline.md",
-    "source/_posts/解决方案/Hexo+Obsidian+git.md"
+    "conflict-files-obsidian-git.md"
   ]
 }
