@@ -121,6 +121,46 @@ color:
 
 以后如果想整体切风格，优先改这个文件，不要直接改 `themes/fluid/` 里的源码。
 
+## Live2D Widget
+
+当前站点的 Live2D 看板娘不是本地静态资源，也不是 git 子模块，而是直接通过 CDN 注入。
+
+脚本入口在：
+
+- `themes/fluid/layout/layout.ejs`
+
+当前写法：
+
+```html
+<script src="https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js"></script>
+```
+
+如果你只是想继续使用默认看板娘，一般不用再动它。
+
+### 想替换版本
+
+直接改这行脚本地址即可，例如把 `1.0.0` 换成你想固定的版本号。
+
+### 想关闭看板娘
+
+删除或注释掉 `themes/fluid/layout/layout.ejs` 里的这行 `<script>`。
+
+### 为什么不用本地目录或子模块
+
+- 之前 `source/live2d-widget` 留下过坏掉的子模块记录，会导致 GitHub Actions 构建失败
+- 这个组件本质上是前端静态脚本，用 CDN 更省维护
+- 如果以后上游更新，你只需要改脚本版本，不需要同步整个仓库
+
+### 什么时候适合改回本地托管
+
+只有在下面几种情况才建议自己托管：
+
+- 你要改 `autoload.js` 或 widget 行为
+- 你要固定一份完全可控的资源副本
+- 你不希望运行时依赖外部 CDN
+
+这种情况下，优先考虑把静态文件直接放进 `source/`，不建议再用 git submodule。
+
 ## 发布
 
 当前部署配置在 `_config.yml`：
