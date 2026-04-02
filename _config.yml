@@ -4,8 +4,8 @@
 
 # Site
 title: '叔莫少州令'
-subtitle: ''
-description: '试试'
+subtitle: '记录 LLM、系统、工程与长期关注的问题'
+description: '一个记录 LLM、GPU、系统基础、行业判断与个人思考的博客。'
 keywords:
 author: rfvscj
 language: zh-CN
@@ -68,7 +68,7 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: 杂项
 category_map:
 tag_map:
 
