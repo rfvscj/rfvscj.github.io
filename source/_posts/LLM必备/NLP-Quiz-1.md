@@ -4,6 +4,8 @@ tags: []
 categories:
   - LLM必备
 date: 2023-09-19 10:25:55
+index_img: /img/bg6.png
+excerpt: 一组 NLP 基础知识问答备忘，覆盖 tuple/list、micro F1 与 macro F1 等容易混淆的概念。
 ---
 
 ## NLP quiz 1

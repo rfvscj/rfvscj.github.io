@@ -1,7 +1,10 @@
 ---
 title: {{ title }}
 date: {{ date }}
-notshow: false
-hide: false
+updated:
+categories:
 tags:
+index_img:
+excerpt:
+published: true
 ---
