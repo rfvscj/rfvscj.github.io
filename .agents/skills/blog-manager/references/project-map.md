@@ -25,6 +25,8 @@ This repository is a personal blog built with Hexo and the Fluid theme. The curr
   About page body copy.
 - `source/guide/index.md`
   In-site maintenance guide for future edits.
+- `source/start/index.md`
+  Public reading guide that explains stable topic directions without listing individual posts.
 - `package.json`
   Project scripts: `build`, `clean`, `server`, `deploy`.
 - `README.md`
@@ -36,6 +38,8 @@ This repository is a personal blog built with Hexo and the Fluid theme. The curr
   Main article corpus. Content is grouped by top-level Chinese category folders such as `LLM必备`, `GPU相关`, `OS&网络`, `思考`, `杂项`, `CV必备`, `Triton算子`, `行业展望`.
 - `source/about/`
   About page source.
+- `source/start/`
+  Public first-read guide.
 - `source/guide/`
   Maintainer guide page.
 - `source/img/`
@@ -52,7 +56,7 @@ This repository is a personal blog built with Hexo and the Fluid theme. The curr
 ## Current Site Identity
 
 - Site title: `叔莫少州令`
-- Primary subtitle direction: record LLM, systems, engineering, and long-term concerns
+- Primary subtitle direction: reusable notes on LLM, CV, GPU, systems, and engineering judgment
 - Language: `zh-CN`
 - Timezone: `Asia/Shanghai`
 - Public URL: `https://rfvscj.github.io`
@@ -76,7 +80,11 @@ npm run deploy
 - Homepage and About should explain identity clearly before adding more features.
 - Placeholder outlines should usually be hidden with `published: false` until they become readable posts.
 - Main public navigation should stay focused on home, articles, categories, maintenance, and about.
+- Public navigation includes a `导读` page before archives. It should remain category-level and avoid concrete article lists unless entries have strong lasting dependency.
+- The blog should stay incremental and low-coupling: adding a normal post should not require editing navigation, guide pages, the reading guide, or unrelated posts.
+- Prefer stable category-level entry points over hand-maintained article indexes. Use explicit cross-links only when posts form a durable series, prerequisite chain, or direct continuation.
 - Preferred post front matter fields are `title`, `date`, `updated`, `categories`, `tags`, `index_img`, `excerpt`, and `published`.
 - Prefer `published: false` as the only standard hiding mechanism; do not rely on legacy `notshow`, and avoid adding new `hide` usage.
 - Prefer writing explicit `excerpt` values for important posts instead of relying on automatic truncation.
+- The visual direction is a restrained technical notebook style: neutral background, blue/teal accents, modest radii, readable line height, and no purely decorative glow/orb layer.
 - If a task creates new lasting conventions, update this project map and the parent `SKILL.md`.

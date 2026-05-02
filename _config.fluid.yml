@@ -83,7 +83,7 @@ fun_features:
   # 为 subtitle 添加打字机效果
   # Typing animation for subtitle
   typing:
-    enable: true
+    enable: false
 
     # 打印速度，数字越大越慢
     # Typing speed, the larger the number, the slower
@@ -138,79 +138,79 @@ dark_mode:
 color:
   # body 背景色
   # Color of body background
-  body_bg_color: "#f6f0ff"
+  body_bg_color: "#f6f8fb"
   # 暗色模式下的 body 背景色，下同
   # Color in dark mode, the same below
-  body_bg_color_dark: "#121526"
+  body_bg_color_dark: "#0f1720"
 
   # 顶部菜单背景色
   # Color of navigation bar background
-  navbar_bg_color: "#5a4d8f"
-  navbar_bg_color_dark: "#1b2040"
+  navbar_bg_color: "#14213d"
+  navbar_bg_color_dark: "#0b1220"
 
   # 顶部菜单字体色
   # Color of navigation bar text
-  navbar_text_color: "#fff7fd"
-  navbar_text_color_dark: "#e6defc"
+  navbar_text_color: "#f8fafc"
+  navbar_text_color_dark: "#e5edf7"
 
   # 副标题字体色
   # Color of navigation bar text
-  subtitle_color: "#fff8ff"
-  subtitle_color_dark: "#efe9ff"
+  subtitle_color: "#f8fafc"
+  subtitle_color_dark: "#e5edf7"
 
   # 全局字体色
   # Color of global text
-  text_color: "#433b62"
-  text_color_dark: "#d8d8ea"
+  text_color: "#1f2937"
+  text_color_dark: "#d7dde7"
 
   # 全局次级字体色（摘要、简介等位置）
   # Color of global secondary text (excerpt, introduction, etc.)
-  sec_text_color: "#7c7498"
-  sec_text_color_dark: "#aaa6c8"
+  sec_text_color: "#64748b"
+  sec_text_color_dark: "#9aa6b2"
 
   # 主面板背景色
   # Color of main board
-  board_color: "rgba(255, 251, 255, 0.86)"
-  board_color_dark: "rgba(24, 29, 54, 0.82)"
+  board_color: "rgba(255, 255, 255, 0.92)"
+  board_color_dark: "rgba(17, 24, 39, 0.88)"
 
   # 文章正文字体色
   # Color of post text
-  post_text_color: "#463d67"
-  post_text_color_dark: "#dddaf3"
+  post_text_color: "#243044"
+  post_text_color_dark: "#dbe3ee"
 
   # 文章正文字体色（h1 h2 h3...）
   # Color of Article heading (h1 h2 h3...)
-  post_heading_color: "#2b2147"
-  post_heading_color_dark: "#f2efff"
+  post_heading_color: "#111827"
+  post_heading_color_dark: "#f8fafc"
 
   # 文章超链接字体色
   # Color of post link
-  post_link_color: "#7d63d6"
-  post_link_color_dark: "#9fc0ff"
+  post_link_color: "#2563eb"
+  post_link_color_dark: "#7dd3fc"
 
   # 超链接悬浮时字体色
   # Color of link when hovering
-  link_hover_color: "#ff7ab6"
-  link_hover_color_dark: "#ff9ccb"
+  link_hover_color: "#0f766e"
+  link_hover_color_dark: "#5eead4"
 
   # 超链接悬浮背景色
   # Color of link background when hovering
-  link_hover_bg_color: "#fff0f8"
-  link_hover_bg_color_dark: "#2f355d"
+  link_hover_bg_color: "#e0f2fe"
+  link_hover_bg_color_dark: "#123044"
 
   # 分隔线和表格边线的颜色
   # Color of horizontal rule and table border
-  line_color: "#eadff7"
-  line_color_dark: "#434b77"
+  line_color: "#dbe3ee"
+  line_color_dark: "#334155"
 
   # 滚动条颜色
   # Color of scrollbar
-  scrollbar_color: "#cbb7ef"
-  scrollbar_color_dark: "#5f6aa2"
+  scrollbar_color: "#94a3b8"
+  scrollbar_color_dark: "#475569"
   # 滚动条悬浮颜色
   # Color of scrollbar when hovering
-  scrollbar_hover_color: "#b59ae2"
-  scrollbar_hover_color_dark: "#7b88c1"
+  scrollbar_hover_color: "#64748b"
+  scrollbar_hover_color_dark: "#64748b"
 
   # 按钮背景色
   # Color of button
@@ -218,15 +218,15 @@ color:
   button_bg_color_dark: "transparent"
   # 按钮悬浮背景色
   # Color of button when hovering
-  button_hover_bg_color: "#fff0f8"
-  button_hover_bg_color_dark: "#33436c"
+  button_hover_bg_color: "#e0f2fe"
+  button_hover_bg_color_dark: "#123044"
 
 # 主题字体配置
 # Font
 font:
   font_size: 16px
   font_family: "Avenir Next, Hiragino Sans GB, PingFang SC, Microsoft YaHei, sans-serif"
-  letter_spacing: 0.02em
+  letter_spacing: 0
   code_font_size: 85%
 
 # 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js
@@ -347,6 +347,7 @@ navbar:
   # Navigation bar menu. `key` is used to associate languages/*.yml. If there is no association, the value of `key` itself will be displayed; if `icon` is a css class, it can be omitted; adding `name` can force the display of the specified name
   menu:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+    - { key: "start", name: "导读", link: "/start/", icon: "iconfont icon-list" }
     - { key: "archive", name: "文章", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", name: "专题", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "guide", name: "维护", link: "/guide/", icon: "iconfont icon-list" }
@@ -466,12 +467,12 @@ index:
   # 头图高度，屏幕百分比
   # Height ratio of banner image
   # Available: 0 - 100
-  banner_img_height: 100
+  banner_img_height: 72
 
   # 头图黑色蒙版的不透明度，available: 0 - 1.0， 1 是完全不透明
   # Opacity of the banner mask, 1.0 is completely opaque
   # Available: 0 - 1.0
-  banner_mask_alpha: 0.3
+  banner_mask_alpha: 0.42
 
   # 首页副标题的独立设置
   # Independent config of home page subtitle
@@ -480,7 +481,7 @@ index:
 
     # 为空则按 hexo config.subtitle 显示
     # If empty, text based on `subtitle` in hexo config
-    text: "记录 LLM、GPU、系统基础、工程实践，以及那些需要长期观察的问题"
+    text: "把 LLM、CV、GPU、系统和工程判断整理成能复用的笔记"
 
     # 通过 API 接口作为首页副标题的内容，必须返回的是 JSON 格式，如果请求失败则按 text 字段显示，该功能必须先开启 typing 打字机功能
     # Subtitle of the homepage through the API, must be returned a JSON. If the request fails, it will be displayed in `text` value. This feature must first enable the typing animation
@@ -534,8 +535,8 @@ index:
 #---------------------------
 post:
   banner_img: /img/bg3.png
-  banner_img_height: 70
-  banner_mask_alpha: 0.3
+  banner_img_height: 52
+  banner_mask_alpha: 0.46
 
   # 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片
   # Path of the default post cover when `index_img` is not set. If both are empty, no image will be displayed
@@ -888,8 +889,8 @@ giscus:
 #---------------------------
 archive:
   banner_img: /img/bg3.png
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_img_height: 46
+  banner_mask_alpha: 0.44
 
 
 #---------------------------
@@ -899,8 +900,8 @@ archive:
 category:
   enable: true
   banner_img: /img/bg4.png
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_img_height: 46
+  banner_mask_alpha: 0.44
 
   # 分类的排序字段，前面带减号是倒序，不带减号是正序
   # Sort field for categories, with a minus sign is reverse order
@@ -928,8 +929,8 @@ category:
 tag:
   enable: true
   banner_img: /img/bg5.png
-  banner_img_height: 80
-  banner_mask_alpha: 0.3
+  banner_img_height: 46
+  banner_mask_alpha: 0.44
   tagcloud:
     min_font: 15
     max_font: 30
@@ -945,11 +946,11 @@ tag:
 about:
   enable: true
   banner_img: /img/bg2.png
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_img_height: 46
+  banner_mask_alpha: 0.44
   avatar: /img/myhead.png
   name: "叔莫少州令"
-  intro: "关注 LLM、GPU、系统与工程，也保留一部分对行业和个人选择的长期记录。"
+  intro: "写 LLM、CV、GPU、系统工程和长期判断。"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
@@ -966,8 +967,8 @@ about:
 #---------------------------
 page:
   banner_img: /img/default.png
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
+  banner_img_height: 46
+  banner_mask_alpha: 0.44
 
 
 #---------------------------
