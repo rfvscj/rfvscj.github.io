@@ -241,24 +241,73 @@ cuobjdump --dump-ptx a.out
 
 不需要手写 PTX，但看 PTX 能回答这些问题：
 
-| 你想知道的 | 在 PTX 里找 |
-|---|---|
-| 循环展开了吗 | `bra` 指令的数量和位置 |
-| 用了 FMA 吗 | `fma.rn.f32` vs `mul.f32` + `add.f32` |
-| 不必要的 global 访存 | `ld.global` 和 `st.global` 数量是否比预期多 |
-| 寄存器用量 | 头部 `.reg` 声明 |
-| shared memory 用了吗 | `ld.shared` / `st.shared` 指令 |
-| 编译器理解了我的 `__syncthreads()` 吗 | `bar.sync` 指令 |
+```ptx
+// 一个 vectorAdd kernel 的 PTX（nvcc -ptx 的输出）
+.visible .entry _Z9vectorAddPKfS0_Pfi(
+    .param .u64 _Z9vectorAddPKfS0_Pfi_param_0,
+    .param .u64 _Z9vectorAddPKfS0_Pfi_param_1,
+    .param .u64 _Z9vectorAddPKfS0_Pfi_param_2,
+    .param .u32 _Z9vectorAddPKfS0_Pfi_param_3
+)
+{
+    .reg .f32   %f<4>;        // 浮点寄存器（只有4个，说明编译器没spill）
+    .reg .b32   %r<10>;       // 整数寄存器
+    .reg .b64   %rd<8>;       // 64位地址寄存器
+
+    ld.param.u64    %rd1, [_Z9vectorAddPKfS0_Pfi_param_0];
+    cvta.to.global.u64  %rd2, %rd1;
+    ld.global.f32   %f1, [%rd2];    // ← 从global memory读float
+    ld.global.f32   %f2, [%rd3];    // ← 两次ld.global = 两次global读
+    add.f32     %f3, %f1, %f2;      // ← 如果这是 mul+add, 说明没触发FMA
+    st.global.f32   [%rd4], %f3;    // ← 一次global写
+    ret;
+}
+```
+
+| 你想知道的 | 在 PTX 里找 | 上例的结论 |
+|---|---|---|
+| 循环展开了吗 | `bra` 指令的数量和位置 | 没有循环 → 编译器展开了 |
+| 用了 FMA 吗 | `fma.rn.f32` vs `mul.f32` + `add.f32` | 只有 `add.f32`，没有 FMA（这个kernel不涉及乘加） |
+| 不必要的 global 访存 | `ld.global` 和 `st.global` 数量 | 2读1写 → 合理 |
+| 寄存器用量 | 头部 `.reg` 声明 | 只有4个浮点寄存器，无spill |
+| shared memory 用了吗 | `ld.shared` / `st.shared` 指令 | 没用到 |
+| 编译器理解了我的 `__syncthreads()` 吗 | `bar.sync` 指令 | 这个kernel没有barrier |
 
 ---
 
 ## `.cuh` vs `.h`
 
-CUDA 社区约定：
-- **`.cuh`** — 包含 `__global__` / `__device__` 函数声明的头文件
-- **`.h`** — 纯 host 代码，或 `__host__ __device__` 双端函数
+CUDA 社区约定，不是强制的（编译器不关心），但帮你快速理解文件角色：
 
-这个区分不是强制的（编译器不关心），但帮你快速理解项目的文件角色。
+```cuda
+//=== cuda_utils.cuh — 包含 device 函数声明 ===
+#pragma once
+#include <cuda_runtime.h>
+
+__global__ void my_kernel(float *data, int n);
+__device__ float helper_func(float x);
+
+// 可复用的工具宏
+#define CUDA_CHECK(call) do { \
+    cudaError_t err = call; \
+    if (err != cudaSuccess) { \
+        fprintf(stderr, "%s:%d: %s\n", __FILE__, __LINE__, \
+                cudaGetErrorString(err)); \
+        exit(1); \
+    } \
+} while(0)
+```
+
+```cuda
+//=== common.h — 纯 host 或两端通用 ===
+#pragma once
+#include <cstdio>
+
+// host & device 都能调
+inline __host__ __device__ int ceiling_div(int a, int b) {
+    return (a + b - 1) / b;
+}
+```
 
 ---
 

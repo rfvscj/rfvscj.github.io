@@ -297,7 +297,17 @@ current_sum = current_sum * expf(old_max - current_max) + expf(new_val - current
 
 4. **改计算逻辑 → 对比数值**：拿小 tensor（M=N=K=16 或更小）跑旧代码和新代码，`torch.allclose` 确认一致。
 
-5. **改数据类型 → 注意 align**：half 要 2 字节对齐，float4 要 16 字节对齐（vectorized load）。
+5. **改数据类型 → 注意 align**：half 要 2 字节对齐，float4 要 16 字节对齐（vectorized load）：
+
+```cuda
+// ❌ 不能用 float* 读 half 数据
+// half* 直接赋值没问题
+__half val = half_ptr[tid];
+
+// ✅ 用 float4 做向量化加载（一次读 16 bytes = 4 floats）
+float4 v = reinterpret_cast<const float4*>(ptr)[tid];
+float a = v.x, b = v.y, c = v.z, d = v.w;  // 一次 transaction 读 4 个 float
+```
 
 ---
 
