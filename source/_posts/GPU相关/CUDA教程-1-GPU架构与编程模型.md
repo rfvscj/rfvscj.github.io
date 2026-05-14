@@ -17,28 +17,16 @@ series_order: 1
 
 > **系列导航**：[2. 内存模型与优化](CUDA教程-2-内存模型与优化) | [3. 编译体系与工程化](CUDA教程-3-编译体系与工程化) | [4. 调试与错误排查](CUDA教程-4-调试与错误排查) | [5. 经典算子阅读修改](CUDA教程-5-经典算子阅读修改)
 
-## 给"懂 GPU 但没写过 CUDA"的人
+## 概念到代码
 
-你可能用 Nsight Systems 抓过 timeline，知道 occupancy 怎么算，甚至调过 FlashAttention 的参数。但 `__global__` 函数长什么样？`<<<>>>` 里的参数怎么选？nvcc 怎么跑？——这些你还没亲手做过。
-
-这个系列就是为你写的。**每篇文章的目标不是讲一个新概念，而是帮你把脑子里已经有的概念（SM、warp、coalescing、occupancy）翻译成实实在在的 CUDA 代码和命令。**
-
----
-
-## 概念到代码的映射
-
-翻开 CUDA 代码之前，先把你的已有知识对接上：
-
-| 你已经知道的 | 在 CUDA 代码里对应 |
+| GPU 概念 | CUDA 代码中对应 |
 |---|---|
-| GPU 有 N 个 SM，每个 SM 有很多 core | `<<<grid, block>>>` 里的 grid 决定用多少 SM |
-| SM 上跑的是 warp（32 线程一组） | `block` 参数除以 32 就是这个 block 拆成几个 warp |
-| 线程多了才能隐藏延迟 | grid 里的 block 数要远大于 SM 数 |
-| Occupancy = 实际 warp / 最大 warp | 由你的 blockDim、register 用量、shared memory 决定 |
-| 数据要搬到近处才能算得快 | `__shared__` 声明的东西在 SM 的 SRAM 上，比 HBM 快 20x |
-| 全局内存（HBM）带宽是瓶颈 | `cudaMalloc` 出来的是 HBM，coalesced 访问才能用满带宽 |
-
-如果你对这些概念已经很熟，大部分 CUDA 文章前面 70% 的"什么是 GPU"你都可以跳过。下面只讲和写代码直接相关的部分。
+| GPU 有 N 个 SM | `<<<grid, block>>>` 的 grid 决定 block 数 |
+| SM 以 warp 为单位调度（32 线程一组） | `block / 32` = 一个 block 拆成几个 warp |
+| 延迟靠大量线程切换来隐藏 | grid 里的 block 数要远大于 SM 数 |
+| Occupancy = 活跃 warp / 最大 warp | 取决于 blockDim、register 用量、shared memory |
+| Shared memory 比 HBM 快一个数量级 | `__shared__` 声明的数组在 SM 的 SRAM 上 |
+| HBM 带宽是瓶颈 | `cudaMalloc` 分配的是 HBM，coalesced 访问才能用满 |
 
 ---
 
@@ -235,7 +223,7 @@ malloc → cudaMalloc → cudaMemcpy H2D → kernel<<<>>> → cudaMemcpy D2H →
 
 ## `__syncthreads()`：block 内的同步点
 
-当 block 内多个线程协作时（比如大家一起加载数据到 shared memory），**所有人**必须先写再去读：
+当 block 内多个线程协作时（比如大家一起加载数据到 shared memory），**所有人**必须先写完再去读：
 
 ```cuda
 __shared__ float smem[256];
