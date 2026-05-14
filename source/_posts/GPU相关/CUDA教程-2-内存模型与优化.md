@@ -159,24 +159,67 @@ cudaMemcpyToSymbol(weights, h_weights, sizeof(weights));
 
 ## Tiling 实战：拿 GEMM 举例
 
-这里不重复之前的完整 GEMM 代码（见[第五篇](CUDA教程-5-经典算子阅读修改)），只讲 tiling 的核心机制和效果。
+### Naive 版本（先看问题）
 
-### 问题
+```cuda
+__global__ void matmul_naive(const float *A, const float *B, float *C, int N) {
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
 
-两个 N×N 矩阵相乘，naive 写法每个线程读 N 次 A + N 次 B，总共约 2N³ 次 global read。而且读 B 是 stride-N 的（非 coalesced）。
-
-### Tiling 的解法
-
+    if (row < N && col < N) {
+        float sum = 0.0f;
+        for (int k = 0; k < N; k++) {
+            sum += A[row * N + k] * B[k * N + col];
+        }
+        C[row * N + col] = sum;
+    }
+}
 ```
-把 A 和 B 拆成 16×16 的小块（tile）：
-1. block 内所有线程协作把一块 tile 从 global 搬到 shared（每个线程搬 1 个元素）
-2. 在 shared memory 上做 tile 内的计算（所有线程复用这些数据）
-3. 搬到下一个 tile
 
-效果：每个 global 读被同一个 block 内 256 个线程复用了
-     → global read 次数 / 16
-     → 同时解决了 B 的 stride-N 问题（搬到 shared 后内部访问是 stride-1）
+问题：每个线程循环 N 次，每次读 A（stride-1, coalesced ✓）和 B（stride-N, 读一整列, ✗）。
+
+### Tiled 版本（完整代码）
+
+```cuda
+#define TILE 16
+
+__global__ void matmul_tiled(const float *A, const float *B, float *C, int N) {
+    __shared__ float As[TILE][TILE];
+    __shared__ float Bs[TILE][TILE];
+
+    int row = blockIdx.y * TILE + threadIdx.y;
+    int col = blockIdx.x * TILE + threadIdx.x;
+
+    float sum = 0.0f;
+
+    // 遍历所有 tile
+    for (int t = 0; t < (N + TILE - 1) / TILE; t++) {
+        // 协作加载 A 的 tile
+        int a_col = t * TILE + threadIdx.x;
+        As[threadIdx.y][threadIdx.x] =
+            (row < N && a_col < N) ? A[row * N + a_col] : 0.0f;
+
+        // 协作加载 B 的 tile
+        int b_row = t * TILE + threadIdx.y;
+        Bs[threadIdx.y][threadIdx.x] =
+            (b_row < N && col < N) ? B[b_row * N + col] : 0.0f;
+
+        __syncthreads();
+
+        // 在 shared memory 上做 tile 内乘加
+        for (int k = 0; k < TILE; k++) {
+            sum += As[threadIdx.y][k] * Bs[k][threadIdx.x];
+        }
+        __syncthreads();
+    }
+
+    if (row < N && col < N) C[row * N + col] = sum;
+}
 ```
+
+### 为什么有效
+
+把 A 和 B 拆成 16×16 的小块（tile），block 内所有线程协作把一块 tile 从 global 搬到 shared，然后在 shared 上做计算。每个 global 读被同一个 block 内 256 个线程复用，global read 次数 / 16。同时解决了 B 的 stride-N 问题——搬到 shared 后内部访问是 stride-1。
 
 ### 量化
 
