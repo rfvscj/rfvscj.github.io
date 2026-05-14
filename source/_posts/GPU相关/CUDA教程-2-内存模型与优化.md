@@ -1,5 +1,5 @@
 ---
-title: CUDA编程教程(2)：内存模型与优化
+title: CUDA编程教程(2)：内存模型与CUDA代码写法
 categories:
   - GPU相关
 tags:
@@ -11,316 +11,234 @@ tags:
 date: 2026-05-15 12:00:00
 updated: 2026-05-15 12:00:00
 index_img: /img/bg3.png
-excerpt: 深入 CUDA 内存层级：global memory coalescing 的数学条件、shared memory bank conflict 的原理与规避、constant memory 的广播机制，以及 tiling 策略如何把 global 访问量砍掉一个数量级。
+excerpt: 你已经知道寄存器、共享内存、全局内存的区别——本文告诉你这些在 CUDA 代码里怎么声明、怎么用、怎么排查最常见的性能问题。
+series: CUDA编程教程
+series_order: 2
 ---
 
-第一篇搭好了编程模型。这一篇专题讲内存——CUDA 性能优化 90% 的工作都是在和内存打交道。
+> **系列导航**：[1. GPU架构与编程模型](CUDA教程-1-GPU架构与编程模型) | [3. 编译体系与工程化](CUDA教程-3-编译体系与工程化) | [4. 调试与错误排查](CUDA教程-4-调试与错误排查) | [5. 经典算子阅读修改](CUDA教程-5-经典算子阅读修改)
 
-## 内存类型全景
-
-```
-Device 代码可见的内存（从快到慢）：
-
-Register        ← 编译器自动分配，每个线程私有，最快
-Shared Memory   ← __shared__ 声明，block 内共享，手动管理
-Constant Memory ← __constant__ 声明，所有线程只读，有 cache
-Texture Memory  ← 硬件插值 + 2D 空间局部性 cache，图像专用
-Global Memory   ← cudaMalloc 分配，所有线程可读写，最慢
-Local Memory    ← 寄存器溢出时编译器自动用的 global 备份，慢
-```
-
-> 记住一句话：**让数据尽可能靠近计算单元**。寄存器 > Shared Memory > L1 > L2 > HBM。距离每远一级，延迟大约翻 3-5 倍。
+你已经知道 GPU 内存层级：寄存器最快，shared memory 次之，global memory 最慢。你可能还在 nvprof 里看过各种内存指标。本文只做一件事：**把这些概念翻译成具体的 CUDA 声明、访存模式和优化手段。**
 
 ---
 
-## Global Memory 与 Coalesced Access
+## 各类内存在代码里长什么样
 
-Global Memory（HBM）是最大但也最慢的内存。访问它的关键规则是 **coalescing（合并访问）**——同一个 warp 的 32 个线程访问的地址如果连续且对齐，可以被合并成一次或几次 memory transaction。
+```
+速度: 寄存器 >> Shared Memory >> Constant >> Global (HBM)
 
-### 什么算 Coalesced
+声明方式:
+  float x;                     // 局部变量 → 编译器尽量放寄存器
+  __shared__ float tile[256];  // block 内共享，SM 的 SRAM 上
+  __constant__ float w[64];    // 全局只读，带专用 cache
+  cudaMalloc(&ptr, bytes);     // HBM，所有 SM 可读写
+```
 
-以 128 字节对齐的 cache line（L2 cache line = 32 bytes，但 transaction 通常 32/64/128 bytes）为例：
+你的目标：**把频繁复用的数据从 Global 搬到 Shared 或寄存器，每搬一级延迟降 5-10 倍。**
+
+---
+
+## Global Memory：Coalesced Access 是唯一规则
+
+你肯定知道"合并访问"这个词。这里讲**在代码里怎么判断一段访存是否是 coalesced 的。**
+
+### 规则极简版
+
+> **同一个 warp 的 32 个线程，如果访问的物理地址在 128 字节连续范围内，就能合并成 1 次 memory transaction。**
 
 ```cuda
-// ✅ Coalesced: warp 内线程访问连续地址
-// thread i 读 a[i] → 32 threads 访问 128 bytes 连续空间 → 1 次 128B transaction
-float x = a[threadIdx.x];
+// ✅ stride-1：coalesced。thread i 读 a[i]
+float x = a[blockIdx.x * blockDim.x + threadIdx.x];
 
-// ✅ Coalesced (stride-1): 按行访问矩阵的行
+// ✅ stride-1（矩阵按行）：coalesced
 int row = blockIdx.x;
-float x = matrix[row * width + threadIdx.x];
+float x = matrix[row * N + threadIdx.x];  // 连续线程读同一行相邻列
 
-// ❌ Stride-N: warp 内线程按列访问，地址间隔 width*sizeof(float)
-// 32 threads 访问 32 个不连续的 cache line → 32 次 transaction，带宽利用率 ~3%
-float x = matrix[threadIdx.x * width + col];
-
-// ❌ 不对齐: 起始地址不是 32/64/128 字节对齐 → 多一次 transaction
-float x = a[threadIdx.x + 3];  // 如果 a 128B 对齐，+3 字节偏移导致跨 cache line
+// ❌ stride-N（矩阵按列）：非 coalesced，灾难
+float x = matrix[threadIdx.x * N + col];  // 连续线程读不同行的同一列
+// 后果：带宽利用率可能从 90% 掉到 3%
 ```
 
-### 量化感受
+### 为什么会掉那么多
 
-A100 的 HBM 带宽约 2 TB/s。但这是**峰值**，只有 coalesced 访问才能接近。stride-N 访问可能只用到 50 GB/s，差了 40 倍。
+A100 HBM 带宽约 2 TB/s，但只有 coalesced 访问才接近这个数字。stride-N 访问让每次 transaction 只用到 cache line 里的 4 bytes，其余 124 bytes 浪费了——32 次 transaction 只读了你需要的 128 bytes，有效带宽 / 实际传输 ≈ 1/32。
 
+### 工程上最常见的修复
+
+两种做法解决 stride-N 问题：
+
+**方案 A：改数据排布（SoA 替代 AoS）**
 ```cuda
-// 直观对比：stride-1 vs stride-N 的实际带宽
-__global__ void read_stride1(const float *in, float *out, int n) {
-    int tid = blockIdx.x * blockDim.x + threadIdx.x;
-    if (tid < n) out[tid] = in[tid];  // stride-1, coalesced
-}
+// 不要用
+struct Particle { float x, y, z, vx, vy, vz; };  // AoS，warp 内无法 stride-1
 
-__global__ void read_strideN(const float *in, float *out, int n, int stride) {
-    int tid = blockIdx.x * blockDim.x + threadIdx.x;
-    int idx = tid * stride;
-    if (idx < n) out[tid] = in[idx];  // stride-N, non-coalesced
-}
+// 改用
+float *px, *py, *pz, *pvx, *pvy, *pvz;   // SoA，每个数组都 stride-1
 ```
 
-### 结论
-
-- **结构体数组（AoS）→ 数组结构体（SoA）**：把 `struct {float x,y,z;}` 换成 `float *x, *y, *z`，让 warp 访问 stride-1
-- **矩阵按行优先存储**：gemm 时让连续的线程读同一行的相邻列
-- **必要时用 Shared Memory 做转置**：把 stride-N 的读变成 shared memory 内的 stride-1 写
+**方案 B：用 Shared Memory 做转置**（见后面的 tiling 节）
 
 ---
 
-## Shared Memory：程序员的手动 Cache
+## Shared Memory：你手里最重要的工具
 
-Shared Memory 是 SM 上的 SRAM（~164 KB / SM on A100），比 global memory 快 20-30 倍。**这就是你手里最重要的优化工具。**
-
-### 声明和使用
+### 声明和使用模板
 
 ```cuda
-__global__ void shared_mem_demo(const float *in, float *out, int n) {
-    __shared__ float tile[256];  // block 内所有线程共享
+__global__ void tiled_kernel(const float *in, float *out, int n) {
+    __shared__ float tile[256];   // 固定大小声明
 
     int tid = threadIdx.x;
     int gid = blockIdx.x * blockDim.x + threadIdx.x;
 
-    // 1. 协作加载：每个线程从 global 读一个元素到 shared
-    if (gid < n) tile[tid] = in[gid];
-    __syncthreads();  // 2. 等所有线程都加载完
+    // Step 1: 协作加载（每个线程搬一个元素）
+    tile[tid] = (gid < n) ? in[gid] : 0.0f;
+    __syncthreads();             // 等所有线程写完
 
-    // 3. 在 shared memory 上做多次计算（避免反复读 global）
-    float sum = 0;
-    for (int i = 0; i < 256; i++) {
-        sum += tile[i];  // 每次访问 ~30 cycles vs global 的 ~400 cycles
-    }
+    // Step 2: 在 shared memory 上反复读（在这期间不碰 global memory）
+    float acc = 0;
+    for (int i = 0; i < 256; i++) acc += tile[i];
 
-    if (gid < n) out[gid] = sum;
+    // Step 3: 写回
+    if (gid < n) out[gid] = acc;
 }
 ```
 
-### Bank Conflict
+这样做有什么效果？假设每个元素被 block 内所有线程读了 N 次。不用 shared memory：N 次 global read，约 400×N cycles。用了 shared memory：1 次 global read + N 次 shared read = 400 + 30×N cycles。
 
-Shared Memory 被分成 32 个 bank，每个 bank 4 bytes 宽。同一 warp 的多个线程如果访问同一个 bank 的不同地址，就会产生 **bank conflict**——这些访问被串行化。
+### Dynamic Shared Memory
 
-```
-Bank 布局 (4-byte 粒度):
-  bank 0: addr 0, 32, 64, 96, ...
-  bank 1: addr 4, 36, 68, 100, ...
-  ...
-  bank 31: addr 124, 156, 188, ...
-
-同一 bank 内的不同地址 → conflict
-同一 bank 内的相同地址 → broadcast (无冲突)
-```
+如果你的 tile 大小是运行期决定的（比如不同模型不同维度）：
 
 ```cuda
-// ❌ 经典 bank conflict: stride-32 访问
-// thread i 读 tile[i * 32] → 所有线程命中同一 bank → 32-way conflict
+// launch 时指定第三个参数（bytes）
+kernel<<<grid, block, tile_size * sizeof(float)>>>(...);
+
+// kernel 内声明
+extern __shared__ float tile[];   // 大小由 launch 时的 sharedMemBytes 决定
+```
+
+### Bank Conflict：怎么看出来、怎么修
+
+Shared memory 按 4 字节切分成 32 个 bank。同一 warp 内多个线程访问同一 bank 的不同地址 → 串行化。
+
+能引发 bank conflict 的经典场景：
+
+```cuda
+// ❌ thread i 读 tile[32 * i]：所有线程命中 bank 0
 float x = tile[threadIdx.x * 32];
 
-// ✅ 无冲突: stride-1
-float x = tile[threadIdx.x];
-
-// ✅ 无冲突: 加 padding 消除冲突
-__shared__ float tile[256 + 16];  // +16 让 stride-32 的地址偏移到不同 bank
-float x = tile[threadIdx.x * 33];  // 改为 stride-33
+// ❌ 转置读写：thread.x 写 tile[ty][tx]，再以 stride-32 读 tile[tx][ty]
 ```
 
-### Padding 消除 Bank Conflict 的原理
+修复——加 padding：
+```cuda
+// 原来: __shared__ float tile[32][32];
+// 修复: 每行多一个不用的元素，打散 bank 映射
+__shared__ float tile[32][32 + 1];  // 32+1=33，33 和 32 互质 → 冲突消失
+```
 
-原始（每行 32 个 float，bank 数 = 32）：
-```
-行0: bank 0  1  2  ... 31
-行1: bank 0  1  2  ... 31    ← thread 0 和 32 都命 bank 0
-```
-
-加 padding（每行 33 个 float）：
-```
-行0: bank 0  1  2  ... 31
-行1: bank 1  2  3  ... 0     ← 偏移了一个 bank
-行2: bank 2  3  4  ... 1
-```
+**你不需要死记 bank 编号。写代码时遵守一条规则：block 内线程的连续访问模式（按 `threadIdx.x` 递增）不要产生 stride 等于 32 的倍数的地址间隔。如果不幸产生了，加 padding。**
 
 ---
 
-## Constant Memory：广播读
+## Constant Memory：用对场景有奇效
 
 ```cuda
-__constant__ float weights[256];  // 最多 64 KB，所有线程只读
+__constant__ float weights[256];  // 声明（最多 64 KB）
 
-// host 端写
-cudaMemcpyToSymbol(weights, h_weights, sizeof(h_weights));
+// host 端写入
+cudaMemcpyToSymbol(weights, h_weights, sizeof(weights));
 ```
 
-特点：
-- warp 内所有线程读**同一地址**时，一次广播完成（1 cycle）
-- warp 内线程读**不同地址**时，串行化（和普通 global memory 一样慢）
-- 有独立的 constant cache（~8 KB / SM）
+适用场景极窄但效果极好：**warp 内所有线程同时读同一个值**——一次广播 1 cycle 完成。但如果 warp 内线程读不同地址，退化为串行（和 global memory 一样慢）。
 
-适用场景：模型参数、卷积核权重——warp 内所有线程在同一时刻读同一个值的场景。
+典型用法：卷积权重、标量参数（scale、bias 等 warp 内一致的参数）。
 
 ---
 
-## Tiling：用 Shared Memory 砍 Global 访问量
+## Tiling 实战：拿 GEMM 举例
 
-以矩阵乘法为例，说明 tiling 如何减少 global memory 访问。
+这里不重复之前的完整 GEMM 代码（见[第五篇](CUDA教程-5-经典算子阅读修改)），只讲 tiling 的核心机制和效果。
 
 ### 问题
 
-两个 N×N 矩阵相乘，每个线程计算一个输出元素需要读 2N 个 global memory 元素。总共需要 `2N^3` 次 global 读。
+两个 N×N 矩阵相乘，naive 写法每个线程读 N 次 A + N 次 B，总共约 2N³ 次 global read。而且读 B 是 stride-N 的（非 coalesced）。
 
-### Naive 实现
+### Tiling 的解法
 
-```cuda
-__global__ void matmul_naive(const float *A, const float *B, float *C, int N) {
-    int row = blockIdx.y * blockDim.y + threadIdx.y;
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
+```
+把 A 和 B 拆成 16×16 的小块（tile）：
+1. block 内所有线程协作把一块 tile 从 global 搬到 shared（每个线程搬 1 个元素）
+2. 在 shared memory 上做 tile 内的计算（所有线程复用这些数据）
+3. 搬到下一个 tile
 
-    if (row < N && col < N) {
-        float sum = 0.0f;
-        for (int k = 0; k < N; k++) {
-            sum += A[row * N + k] * B[k * N + col];
-        }
-        C[row * N + col] = sum;
-    }
-}
+效果：每个 global 读被同一个 block 内 256 个线程复用了
+     → global read 次数 / 16
+     → 同时解决了 B 的 stride-N 问题（搬到 shared 后内部访问是 stride-1）
 ```
 
-问题：每个线程循环 N 次，每次读 A（stride-1, coalesced ✓）和 B（stride-N, 读一整列, ✗）。
+### 量化
 
-### Tiled 实现
+| | Global read 量 | B 的访存模式 | 估算有效带宽 |
+|---|---|---|---|
+| Naive | 2N³ | stride-N | ~50 GB/s |
+| Tiled 16×16 | 2N³/16 | shared memory stride-1 | ~1.2 TB/s |
 
-```cuda
-#define TILE_SIZE 16
-
-__global__ void matmul_tiled(const float *A, const float *B, float *C, int N) {
-    __shared__ float As[TILE_SIZE][TILE_SIZE];
-    __shared__ float Bs[TILE_SIZE][TILE_SIZE];
-
-    int row = blockIdx.y * TILE_SIZE + threadIdx.y;
-    int col = blockIdx.x * TILE_SIZE + threadIdx.x;
-
-    float sum = 0.0f;
-
-    // 遍历所有 tile
-    for (int t = 0; t < (N + TILE_SIZE - 1) / TILE_SIZE; t++) {
-        // 协作加载 A 的 tile
-        int a_col = t * TILE_SIZE + threadIdx.x;
-        if (row < N && a_col < N)
-            As[threadIdx.y][threadIdx.x] = A[row * N + a_col];
-        else
-            As[threadIdx.y][threadIdx.x] = 0.0f;
-
-        // 协作加载 B 的 tile
-        int b_row = t * TILE_SIZE + threadIdx.y;
-        if (b_row < N && col < N)
-            Bs[threadIdx.y][threadIdx.x] = B[b_row * N + col];
-        else
-            Bs[threadIdx.y][threadIdx.x] = 0.0f;
-
-        __syncthreads();
-
-        // 在 shared memory 上做 tile 内的乘加
-        for (int k = 0; k < TILE_SIZE; k++) {
-            sum += As[threadIdx.y][k] * Bs[k][threadIdx.x];
-        }
-        __syncthreads();
-    }
-
-    if (row < N && col < N) C[row * N + col] = sum;
-}
-```
-
-**效果量化**：
-
-| | Global 读次数 | 实际带宽 |
-|---|---|---|
-| Naive | `2N^3` | ~50 GB/s（受 B 的 stride-N 限制） |
-| Tiled (16×16) | `2N^3 / 16` | ~1.2 TB/s（接近峰值） |
-
-tiling 把 global 访问量降了 16 倍——每个 tile 的元素被同一个 block 内所有线程复用，不再需要每个线程各自从 global 重读。
+**tiling 的正确 mental model**：不是在优化计算，是在优化访存。计算量没有变少，但你让计算发生在离 ALU 近得多的存储层级上。
 
 ---
 
-## 寄存器压力与 Occupancy
+## Occupancy：从 Kernel 代码反推
 
-寄存器是最快的内存，但每个 SM 的寄存器总数是固定的（A100: 65536/SM）。一个线程用多少寄存器，直接决定了 SM 能放多少线程。
+你肯定知道 occupancy 是什么——SM 上活跃 warp 占最大 warp 的比例。这里直接讲**怎么从 kernel 代码算出来。**
 
 ```bash
-# 编译时查看寄存器用量
+# 编译时看
 nvcc --ptxas-options=-v kernel.cu
-# 输出类似: Used 64 registers, 8192 bytes smem
+# 输出: Used 64 registers, 8192 bytes smem, 0 bytes lmem
 ```
 
-Occupancy 计算：
+然后算：
 ```
-假设 kernel 用 V 个寄存器/线程，block 有 B 个线程
-每个 block 需要的寄存器 = ceil(V * B / 256) * 256  (256-register 对齐)
-最多放的 block/SM = 65536 / (ceil(V * B / 256) * 256)
-最多放的 warp/SM = min(block/SM * B/32, 64)  (max warps/SM = 64 for A100)
-Occupancy = active_warps / max_warps
+假设 A100: 65536 regs/SM, 164 KB smem/SM, block=256 threads
+
+每个 block:
+  regs  = ceil(64 × 256 / 256) × 256 = 16384  (256-register 对齐)
+  smem  = 8192 bytes = 8 KB
+
+每个 SM 最多放:
+  regs 限制: 65536 / 16384 = 4 blocks
+  smem 限制: 164 / 8 = 20 blocks
+  → 取 min = 4 blocks = 4 × 8 warps = 32 warps/SM
+
+Occupancy = 32 / 64 = 50%
 ```
 
-经验值：
-- Occupancy ≥ 50%：足够 latency hiding，继续减寄存器收益递减
-- 每个线程 ≥ 128 个寄存器：可能占用过高，考虑拆分 kernel 或用 `__launch_bounds__`
+**50% 对大部分 kernel 就够了**——SM 只需要足够的活跃 warp 来隐藏延迟，更多 warp 边际收益递减。
 
-```cuda
-// 告诉编译器这个 kernel 的最大线程数，帮助它优化寄存器分配
-__global__ __launch_bounds__(256, 2) void my_kernel(...) { ... }
-// 256 = max threads per block, 2 = min blocks per SM
+如果你想要更高 occupancy：
+- 用更小的 block（128 而非 256）
+- 减少 shared memory 使用
+- 加 `__launch_bounds__(maxThreadsPerBlock, minBlocksPerSM)` 提示编译器优化寄存器
+
+---
+
+## 实操 Checklist
+
+拿到一个 kernel，从内存角度检查：
+
+```
+□ 所有 global 读/写是 stride-1（coalesced）的吗？
+□ 有没有大于 2 次复用的数据？→ 搬进 shared memory
+□ shared memory 有没有 stride 为 32 倍数的访问？→ bank conflict
+□ __syncthreads() 在每次 shared 写之后、读之前都有？
+□ 寄存器 spill 了吗？（--ptxas-options=-v 看 stack frame/spill 提示）
+□ occupancy > 50% 了吗？
 ```
 
 ---
 
-## Local Memory：隐形的性能杀手
+## 下篇文章
 
-Local memory 不是物理内存，是编译器在**寄存器不够用时**把变量 spill 到 global memory。对程序员透明，但性能代价巨大。
-
-```cuda
-// 这个 kernel 可能产生大量 local memory spill
-__global__ void register_hungry() {
-    float a0, a1, a2, ..., a127;  // 128 个寄存器，很容易溢出
-    // ...
-}
-```
-
-发现方法：
-```bash
-nvcc --ptxas-options=-v kernel.cu
-# 看到 "xx bytes stack frame, xx bytes spill stores, xx bytes spill loads" 就要警惕
-```
-
-解决方案：
-- 减小 block 大小（给每个线程更多寄存器配额）
-- 减少 kernel 内的局部变量
-- 把 kernel 拆成多个更小的 kernel
-
----
-
-## 内存优化的核心 checklist
-
-1. **Global Memory 访问是 coalesced 的吗？** 不同 warp 的线程访问同一行相邻列 = coalesced。访问列 = 灾难。
-2. **有没有用 Shared Memory 做 tiling？** 数据复用 ≥2 次就值得搬到 shared memory。
-3. **Shared Memory 有没有 bank conflict？** 检查 stride-32 访问模式，必要时加 padding。
-4. **Occupancy 够用吗？** 用 `ncu`（NVIDIA Nsight Compute）实测，不要猜。
-5. **寄存器 spill 了吗？** 看 `--ptxas-options=-v` 的输出。
-
----
-
-## 下一篇文章
-
-第三篇讲编译体系与工具链：nvcc 的编译 pipeline（CUDA C → PTX → SASS）、常用编译选项、CMake 集成 CUDA 项目，以及如何阅读 PTX 代码来理解编译器的实际行为。
+[第三篇：编译体系与工程化](/GPU相关/CUDA教程-3-编译体系与工程化/) — nvcc 到底在干什么、CMake 怎么配 CUDA 项目、5 种最常见的编译错误和修复方法。

@@ -12,9 +12,13 @@ date: 2026-05-15 12:00:00
 updated: 2026-05-15 12:00:00
 index_img: /img/bg3.png
 excerpt: 拿到一个别人的 reduction/matmul/softmax kernel，能看懂每段在干什么，能在不改坏性能的前提下做局部修改。关键是学会读 kernel 的结构模式。
+series: CUDA编程教程
+series_order: 5
 ---
 
-这篇的目标不是从零写优化 kernel，而是**拿到现有代码能看懂、能改、能不出 bug**。
+> **系列导航**：[1. GPU架构与编程模型](CUDA教程-1-GPU架构与编程模型) | [2. 内存模型与优化](CUDA教程-2-内存模型与优化) | [3. 编译体系与工程化](CUDA教程-3-编译体系与工程化) | [4. 调试与错误排查](CUDA教程-4-调试与错误排查)
+
+这篇的目标不是从零写优化 kernel，而是**拿到现有代码能看懂、能改、能不出 bug**。你很可能不会从零开始写 GEMM kernel——更多时候你拿到的是已经有了的 kernel，需要加 bias、改 precision、换数据排布。本文用三种最常遇到的算子（reduction、matmul、softmax）演示怎么读和怎么改。
 
 ---
 

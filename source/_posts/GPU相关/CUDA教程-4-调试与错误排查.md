@@ -12,9 +12,15 @@ date: 2026-05-15 12:00:00
 updated: 2026-05-15 12:00:00
 index_img: /img/bg3.png
 excerpt: 接手 CUDA 代码最恐惧的就是莫名其妙的 crash 和错结果。本文覆盖 CUDA 最常见的 10 类错误、compute-sanitizer/cuda-gdb 实战用法，以及拿到一个报错后的标准排查流程。
+series: CUDA编程教程
+series_order: 4
 ---
 
+> **系列导航**：[1. GPU架构与编程模型](CUDA教程-1-GPU架构与编程模型) | [2. 内存模型与优化](CUDA教程-2-内存模型与优化) | [3. 编译体系与工程化](CUDA教程-3-编译体系与工程化) | [5. 经典算子阅读修改](CUDA教程-5-经典算子阅读修改)
+
 这篇的核心是**能在看不懂全部代码的情况下定位问题**。CUDA 的错误信息往往很模糊，有自己的排查套路。
+
+你可能在 Nsight 或者 nvprof 的输出里见过一些 GPU 异常指标，但当你自己写的 kernel 第一次 crash 时，你会看到 `unspecified launch failure` 或者直接 segfault。这篇把你从 "GPU 怎么了" 带到 "具体哪行代码、哪个线程、什么原因"。
 
 ---
 
@@ -348,6 +354,6 @@ __global__ void debug_kernel(float *data, int n) {
 
 ---
 
-## 下一篇文章
+## 下篇文章
 
 第五篇讲经典算子的阅读和修改——如何看懂别人写的 reduction/matmul/softmax kernel，以及最小改动的修改策略。
